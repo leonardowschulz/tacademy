@@ -1,0 +1,75 @@
+package TrabalhoAvaliativo071022;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static ArrayList<Marca> bancoMarcas = new ArrayList<>();
+	public static ArrayList<Produto> bancoProdutos = new ArrayList<>();
+
+	public static void main(String[] args) {
+
+		ServicosMarca novaMarca = new ServicosMarca();
+		ServicosProduto novoProduto = new ServicosProduto();
+		novaMarca.cadastrar("Samsung");
+		novaMarca.cadastrar("Apple");
+		novaMarca.cadastrar("Motorola");
+		if (novoProduto.cadastrar("Notebook", 100, 5, "Samsung")) {
+			System.out.println("Produto cadastrado com sucesso");
+		} else {
+			System.out.println("Erro ao cadastrar produto");
+		}
+		if (novoProduto.cadastrar("Celular", 100, 5, "Samsung")) {
+			System.out.println("Produto cadastrado com sucesso");
+		} else {
+			System.out.println("Erro ao cadastrar produto");
+		}
+		if (novoProduto.cadastrar("Notebook gamer", 100, 5, "Samsung")) {
+			System.out.println("Produto cadastrado com sucesso");
+		} else {
+			System.out.println("Erro ao cadastrar produto");
+		}
+		if (novoProduto.cadastrar("Notebook empresarial", 100, 5, "Samsung")) {
+			System.out.println("Produto cadastrado com sucesso");
+		} else {
+			System.out.println("Erro ao cadastrar produto");
+		}
+		Produto prod = new Produto("leo", 200.00, 10, "Asus");
+		if (novoProduto.atualizar(1, prod)) {
+			System.out.println("Tudo certo com a atualização");
+		} else {
+			System.out.println("Atualização deu errado");
+		}
+		
+		if (novoProduto.excluir(2)) {
+			System.out.println("Produto de código " + " exclusido com sucesso");
+		} else {
+			System.out.println("Erro ao tentar excluir o produto");
+		}
+		
+		System.out.println(novoProduto.listar());
+		novaMarca.listar();
+		System.out.println(novoProduto.listar("Notebook"));
+
+		
+		int opcao = 0;
+		do {
+			System.out.println(" -------- Opções da loja: --------");
+			System.out.println("1 - Marca (cadastrar/alterar/remover");
+			System.out.println("2 - Produto (cadastrar/alterar/remover");
+			System.out.println("3 - Sair");
+			opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada:"));
+			if (opcao != 3) {
+				Tela.opcao(opcao);
+			}
+
+		} while (opcao != 3);
+
+
+
+
+	}
+
+}

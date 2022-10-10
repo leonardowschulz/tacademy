@@ -1,0 +1,25 @@
+package AtividadeMath02;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Geramos um número aleatório. Tente acertar ele");
+		int tentativa;
+		int qtdeTentativas = 0;
+		int x = (int) (Math.random()*100);
+		
+		do {
+			
+			tentativa = Integer.parseInt(JOptionPane.showInputDialog("Digite sua tentativa: "));
+			qtdeTentativas++;
+		} while(tentativa != x);
+		
+		System.out.println(x);
+		
+		
+	}
+
+}

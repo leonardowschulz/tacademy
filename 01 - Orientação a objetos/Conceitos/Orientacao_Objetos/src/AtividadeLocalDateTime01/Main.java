@@ -1,0 +1,20 @@
+package AtividadeLocalDateTime01;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Locale;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		LocalDateTime date = LocalDateTime.now();
+		System.out.println(date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear() + " - " + date.getHour() + ":" + date.getMinute());
+		
+		
+
+	}
+
+}

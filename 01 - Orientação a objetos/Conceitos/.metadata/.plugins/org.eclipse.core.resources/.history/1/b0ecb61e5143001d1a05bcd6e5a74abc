@@ -1,0 +1,13 @@
+package AtividadeMath02;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Geramos um número aleatório. Tente acertar ele");
+		
+		int x = (int) (Math.random()*100);
+		System.out.println(x);
+	}
+
+}

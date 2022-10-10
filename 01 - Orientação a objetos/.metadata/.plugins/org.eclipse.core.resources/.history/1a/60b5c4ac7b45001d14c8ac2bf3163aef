@@ -1,0 +1,17 @@
+package TrabalhoAvaliativo071022;
+
+public interface IservicosMarca {
+	
+	boolean cadastrar(String m);
+	
+	boolean atualizar(String m, String n);
+	
+	void listar();
+	
+	String selecionar();
+	
+	boolean excluir(String m);
+	
+	boolean existe(String m);
+	
+}

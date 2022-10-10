@@ -1,0 +1,39 @@
+package AtividadeMath01;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Integer x = 0;
+		do {
+			System.out.println(""
+					+ "1 - Soma;\r\n"
+					+ "2 - Subtração;\r\n"
+					+ "3 - Multiplicação;\r\n"
+					+ "4 - Divisão;\r\n"
+					+ "5 - Seno;\r\n"
+					+ "6 - Cosseno;\r\n"
+					+ "7 - Tangente;\r\n"
+					+ "8 - Log;\r\n"
+					+ "9 - Raiz Quadrada;\r\n"
+					+ "10 - Raiz Cúbica.\r\n"
+					+ "11 - Sair\r\n");
+			x = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da opção: "));
+			
+		} while (x != 11);
+		
+
+	}
+	
+	public void opcao(Integer i) {
+		double n1, n2;
+		if (i == 1) {
+			n1 = Double.parseDouble(JOptionPane.showInputDialog("Digite o primeiro número: "));
+			n2 = Double.parseDouble(JOptionPane.showInputDialog("Digite o segundo número: "));
+			System.out.println("A soma dos números é: " + (n1 + n2));
+		}
+	}
+
+}

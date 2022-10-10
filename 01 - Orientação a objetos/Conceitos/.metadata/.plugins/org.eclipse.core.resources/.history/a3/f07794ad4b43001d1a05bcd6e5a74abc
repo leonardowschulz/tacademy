@@ -1,0 +1,24 @@
+package AtividadeString03;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		String palavra = JOptionPane.showInputDialog("Digite a palavra: ");
+		
+		String ultimas = palavra.substring(palavra.length() -2, palavra.length());
+		System.out.println(ultimas);
+		
+		if (ultimas == "ar" || ultimas == "AR" || ultimas == "Ar" || ultimas == "aR") {
+			
+			System.out.println("EU " + palavra.substring(0, palavra.length() - 3) + "O");
+		}
+		else {
+			System.out.println("Não é um verbo.");
+		}
+
+	}
+
+}

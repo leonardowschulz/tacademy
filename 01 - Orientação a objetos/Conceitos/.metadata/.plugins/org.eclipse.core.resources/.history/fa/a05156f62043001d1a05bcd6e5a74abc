@@ -1,0 +1,14 @@
+package exemplo01;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		// Instanciar um objeto
+		Pessoa p = new Pessoa();
+		p.obterDados();
+		p.retornarDados();
+
+	}
+
+}

@@ -1,0 +1,25 @@
+package OrientacaoObjetos01;
+
+import java.util.ArrayList;
+
+public class Contatos  {
+
+		
+	public ArrayList<Pessoa> contatos = new ArrayList<>();
+	
+	
+	public void Cadastrar(String nome, String email, String telefone) {
+		Pessoa cadastrar = new Pessoa(nome, email, telefone);
+		contatos.add(cadastrar);
+	}
+	
+	public void LerCadastros() {
+		System.out.println("\r\n");
+		for (int i = 0; i < contatos.size(); i++) {
+			System.out.println("Cadastro: " + (i + 1) + " - Nome: " + contatos.get(i).nome + " - E-mail: " + contatos.get(i).email + " - Telefone: " + contatos.get(i).telefone);
+		}
+		System.out.println("-----------------------");
+	}
+	
+
+}

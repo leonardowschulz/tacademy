@@ -1,0 +1,49 @@
+package TrabalhoAvaliativo071022;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static ArrayList<Marca> bancoMarcas = new ArrayList<>();
+	public static ArrayList<Produto> bancoProdutos = new ArrayList<>();
+
+	public static void main(String[] args) {
+
+		ServicosMarca novaMarca = new ServicosMarca();
+		ServicosProduto novoProduto = new ServicosProduto();
+		novaMarca.cadastrar("Samsung");
+		novaMarca.cadastrar("Apple");
+		novaMarca.cadastrar("Motorola");
+		novoProduto.cadastrar("Notebook", 100, 5, "Samsung");
+		novoProduto.cadastrar("Celular", 100, 5, "Samsung");
+		novoProduto.cadastrar("Notebook gamer", 100, 5, "Samsung");
+		novoProduto.cadastrar("Notebook empresarial", 100, 5, "Samsung");
+		Produto prod = new Produto("leo", 200.00, 10, "Asus");
+		novoProduto.atualizar(1, prod);
+		//System.out.println(novoProduto.listar());
+		//novaMarca.listar();
+		//System.out.println(novoProduto.listar("Notebook"));
+		System.out.println(novaMarca.excluir("asus"));
+		System.out.println(ServicosProduto.existeProdMarca("asus"));
+		
+		int opcao = 0;
+		do {
+			System.out.println(" -------- Opções da loja: --------");
+			System.out.println("1 - Marca (cadastrar/alterar/remover");
+			System.out.println("2 - Produto (cadastrar/alterar/remover");
+			System.out.println("3 - Sair");
+			opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada:"));
+			if (opcao != 3) {
+				Tela.opcao(opcao);
+			}
+
+		} while (opcao != 3);
+
+
+
+
+	}
+
+}

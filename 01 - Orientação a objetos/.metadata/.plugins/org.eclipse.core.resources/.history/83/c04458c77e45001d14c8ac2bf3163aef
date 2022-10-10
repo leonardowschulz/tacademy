@@ -1,0 +1,18 @@
+package TrabalhoAvaliativo071022;
+
+public interface IservicosProduto {
+	
+	
+	boolean cadastrar(String nome, double valor, int quantidade, String marca);
+	
+	boolean atualizar(Produto antigo, Produto novo);
+	
+	String listar();
+	
+	String listar(String pesquisa);
+	
+	boolean excluir(int cadastro);
+	
+	boolean existe(String nome, String marca);
+	
+}

@@ -1,0 +1,13 @@
+package OrientacaoObjetos06;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Digite os 5 numeros individualment");
+
+		
+		
+	}
+
+}

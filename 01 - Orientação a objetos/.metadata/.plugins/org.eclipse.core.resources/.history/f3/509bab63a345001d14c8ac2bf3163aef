@@ -1,0 +1,75 @@
+package TrabalhoAvaliativo071022;
+
+public class ServicosMarca implements IservicosMarca {
+
+	@Override
+	public boolean cadastrar(String m) {
+		if (!existe(m)) {
+			Marca novaMarca = new Marca(m.toUpperCase());
+			Main.bancoMarcas.add(novaMarca);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean atualizar(String m, String n) {
+		if (existe(m)) {
+			m = m.toUpperCase();
+			Marca novaMarca = new Marca(n.toUpperCase());
+			for (int i = 0; i < Main.bancoMarcas.size(); i++) {
+				if (m.equals(Main.bancoMarcas.get(i).nome)) {
+					Main.bancoMarcas.set(i, novaMarca);
+					return true;
+				}
+			}
+		} else {
+		System.out.println("Marca não encontrada");
+		}
+		return false;
+	}
+
+	@Override
+	public void listar() {
+		if (!Main.bancoMarcas.isEmpty()) {
+			String mensagem;
+			mensagem = " ------ Lista de Marcas ------\r\n";
+			for (int i = 0; i < Main.bancoMarcas.size(); i++) {
+				mensagem += (i+1) + " - " + Main.bancoMarcas.get(i).nome + "\r\n";
+			}
+			mensagem += " ------ Total de Marcas: " + Main.bancoMarcas.size() + " ------\r\n";
+			System.out.println(mensagem);
+			return;
+		}
+		
+		System.out.println("Sem marcas para listar.");
+	}
+
+	@Override
+	public boolean excluir(String m) {
+		m = m.toUpperCase();
+		if (existe(m) && !ServicosProduto.existeProdMarca(m)) {
+			for (int i = 0; i < Main.bancoMarcas.size(); i++) {
+				if (Main.bancoMarcas.get(i).nome.equals(m)) {
+					Main.bancoMarcas.remove(i);
+					return true;
+				}
+			}
+		}
+		System.out.println("Marca está sendo utilizada por algum produto");
+		return false;
+	}
+
+	@Override
+	public boolean existe(String m) {
+		m = m.toUpperCase();
+		for (int i = 0; i < Main.bancoMarcas.size(); i++) {
+			if (Main.bancoMarcas.get(i).nome.equals(m)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+}

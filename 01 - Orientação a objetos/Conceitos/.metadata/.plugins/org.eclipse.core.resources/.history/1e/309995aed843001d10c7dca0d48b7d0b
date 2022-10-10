@@ -1,0 +1,16 @@
+package AtividadeLocalDateTime02;
+
+import java.util.ArrayList;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		ArrayList<Produto> produtos = new ArrayList<>();
+		Produto cadastrar = new Produto("Camiseta",59.90,100,null);
+		produtos.add(cadastrar);
+		
+		System.out.println(produtos.toString());
+	}
+
+}

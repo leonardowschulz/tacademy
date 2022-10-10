@@ -1,0 +1,47 @@
+package exemplo02;
+
+import javax.swing.JOptionPane;
+
+public class Aluno {
+	
+		
+	/*
+	DEFAULT:	Não especifica o modificador
+	PUBLIC:		Público
+	PRIVATE:	Privado
+	PROTECTED:	Protegido
+	*/
+	
+	// Atributos
+	private String nome;
+	private double nota1, nota2;
+	
+	// Método para obter os dados do alunoe
+	private void obterDados() {
+		nome = JOptionPane.showInputDialog("Digite o nome:");
+		nota1 = Double.parseDouble(JOptionPane.showInputDialog("Digite a nota 1: "));
+		nota2 = Double.parseDouble(JOptionPane.showInputDialog("Digite a nota 2: "));
+		
+	}
+	// Método de média
+	private double media() {
+		return (nota1 + nota2)/2;
+	}
+
+	// Método Situação
+	private String situacao(double media) {
+		return media >= 7 ? "Aprovado(a)" : "reprovado(a)";
+	}
+	
+	// Método de mensagem
+	private void mensagem() {
+		JOptionPane.showMessageDialog(null, nome + " obteve a média " + media() + " e está " + situacao(media()));
+	}
+	
+	// Iniciar o sistema
+	public void iniciar() {
+		obterDados();
+		mensagem();
+	}
+	
+}

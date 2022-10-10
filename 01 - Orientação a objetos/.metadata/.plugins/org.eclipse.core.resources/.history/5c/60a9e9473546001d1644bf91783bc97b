@@ -1,0 +1,25 @@
+package TrabalhoAvaliativo071022;
+
+import javax.swing.JOptionPane;
+
+public class Validator {
+
+	public static boolean nome(String nome) {
+		if (!nome.isEmpty() && nome != null && nome.length() <= 30 && !nome.isBlank()) {
+			return true;
+		} else {
+
+			return false;
+		}
+	}
+	public static int catchPreco(String mensagem) {
+		try {
+				Integer x = Integer.parseInt(JOptionPane.showInputDialog(mensagem));
+				return x;
+			} catch (Exception e) {
+				System.out.println("Erro. Favor digitar um numero inteiro");
+				return -1;
+			}
+	}
+
+}

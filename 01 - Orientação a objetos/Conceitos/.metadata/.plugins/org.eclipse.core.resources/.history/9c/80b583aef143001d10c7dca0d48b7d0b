@@ -1,0 +1,70 @@
+package OrientacaoObjetos01;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Integer x = 0;
+		
+		do {
+			
+			System.out.println("Digite o código da opção desejada:");
+			System.out.println("1 - Cadastrar novo contato");
+			System.out.println("2 - Listar contatos");
+			System.out.println("3 - Pesquisar contato");
+			System.out.println("4 - Alterar contato");
+			System.out.println("5 - Remover contato");
+			System.out.println("6 - Encerrar o app");
+			
+			x = Integer.parseInt(JOptionPane.showInputDialog("Digite e opção: "));
+			
+			if (x != 9) {
+				menu(x);
+			}
+			
+		} while (x != 9);
+
+	}
+	public static void menu(int opcao) {
+		switch (opcao) {
+		case 1: {
+			String nome = JOptionPane.showInputDialog("Digite o nome: ");
+			String email = JOptionPane.showInputDialog("Digite o e-mail: ");
+			String telefone = JOptionPane.showInputDialog("Digite o telefone: ");
+			Contatos.Cadastrar(nome, email, telefone);
+			break;
+			}
+		case 2: {
+			Contatos.LerCadastros();
+			break;
+		}
+		case 3: {
+			String nome = JOptionPane.showInputDialog("Digite o nome que deseja procurar: ");
+			Contatos.PesquisarCadastro(nome);
+			break;
+		}
+		case 4: {
+			Integer i = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do cadastro a ser alterado: "));
+			String nome = JOptionPane.showInputDialog("Digite o nome: ");
+			String email = JOptionPane.showInputDialog("Digite o e-mail: ");
+			String telefone = JOptionPane.showInputDialog("Digite o telefone: ");
+			Contatos.AlterarCadastro(i, nome, email, telefone);
+			break;
+		}
+		case 5: {
+			Integer i = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do cadastro a ser removido: "));
+			Contatos.RemoverCadastro(i);
+			break;
+		}
+		case 6: {
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + opcao);
+		}
+	}
+	
+
+}

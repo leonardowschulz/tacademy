@@ -1,0 +1,32 @@
+package OrientacaoObjetos06;
+
+import java.util.ArrayList;
+
+public class Numeros {
+	
+	ArrayList<Integer> numeros = new ArrayList<>();
+	
+	public Numeros(Integer n1, Integer n2, Integer n3, Integer n4, Integer n5) {
+		this.numeros.add(n1);
+		this.numeros.add(n2);
+		this.numeros.add(n3);
+		this.numeros.add(n4);
+		this.numeros.add(n5);
+		
+	}
+	
+	public void maiorMenor() {
+		Integer temp = 0;
+		for (int i = 0; i < 5; i++) {
+			for (int j = i + 1; j < 5; j++) {
+				if (numeros.get(j) > numeros.get(i)) {
+					temp = numeros.get(i);
+					numeros.set(i, numeros.get(j));
+					numeros.set(j, temp);
+				}
+			}
+		}
+		System.out.println("Do maior para o menor: " + numeros);
+	}
+
+}

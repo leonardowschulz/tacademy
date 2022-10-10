@@ -1,0 +1,193 @@
+package TrabalhoAvaliativo071022;
+
+import javax.swing.JOptionPane;
+
+public class Tela {
+
+	// Instanciando os serviços da Marca e Produto
+	static ServicosMarca marca = new ServicosMarca();
+	static ServicosProduto produto = new ServicosProduto();
+
+	// Analisando e direciando a opção selecionada depois do primeiro menu
+	public static void opcao(int opcao) {
+		switch (opcao) {
+		case 1: {
+			menuMarca();
+			break;
+		}
+		case 2: {
+			menuProduto();
+			break;
+		}
+		default:
+			break;
+		}
+	}
+
+	// Menu (segundário) Marcas
+	public static void menuMarca() {
+		Integer opcaoMarca = 0;
+		do {
+			System.out.println(" ------ Menu Marca ------");
+			System.out.println("1 - Cadastrar nova marca");
+			System.out.println("2 - Listar marcas");
+			System.out.println("3 - Alterar marca");
+			System.out.println("4 - Deletar marca");
+			System.out.println("5 - Voltar ao menu anterior");
+			opcaoMarca = Validator.catchNumero("Digite a quantidade em estoque: ", "Erro. Favor digitar um numero de 1 a 5");
+			if (opcaoMarca != 5) {
+				opcaoMarca(opcaoMarca);
+			}
+		} while (opcaoMarca != 5);
+	}
+
+	// Seleção e tratamento do menu marcas e seus serviços
+	public static void opcaoMarca(Integer opcaoMarca) {
+
+		switch (opcaoMarca) {
+
+		// Cadastro de novas marcas
+		case 1: {
+			System.out.println("Digite a marca a ser cadastrada");
+			String novaMarca = JOptionPane.showInputDialog("Digite a nova marca a ser cadastrada");
+			System.out.println(Validator.nome(novaMarca));
+			if (Validator.nome(novaMarca)) {
+				marca.cadastrar(novaMarca);
+			} else {
+				System.out.println("Marca inválida. Favor digitar um nome válido e de até 30 caracteres.");
+			}
+			break;
+		}
+
+		// Listando todas as marcas
+		case 2: {
+			System.out.println(marca.listar());
+			break;
+		}
+
+		// Opção para alterar nome de alguma marca
+		case 3: {
+			System.out.println("Alteração de nome de marca");
+			String nomeMarca = JOptionPane.showInputDialog("Digite o nome da marca a ser alterada");
+			String novaMarca = JOptionPane.showInputDialog("Digite o nome da nova marca");
+			if (Validator.nome(novaMarca)) {
+				marca.cadastrar(novaMarca);
+				if (marca.atualizar(nomeMarca, novaMarca)) {
+					System.out.println("Marca atualizada com sucesso");
+				} else {
+					System.out.println("Marca não pode ser atualizada");
+				}
+			} else {
+				System.out.println("Marca inválida. Favor digitar um nome válido e de até 30 caracteres.");
+			}
+			break;
+		}
+
+		// Operação de exclusão de marca
+		case 4: {
+			String marcaExcluir = JOptionPane.showInputDialog("Digite o nome da marca a ser apagada: ");
+			if (marca.excluir(marcaExcluir)) {
+				System.out.println("Marca " + marcaExcluir.toUpperCase() + " excluída com sucesso");
+			} else {
+				System.out.println("Erro ao tentar excluir a marca");
+			}
+		}
+		default:
+			break;
+		}
+
+	}
+
+	// Menu secundário (produto)
+	public static void menuProduto() {
+		Integer opcaoProduto = 0;
+		do {
+			System.out.println(" ------ Menu Produto ------");
+			System.out.println("1 - Cadastrar novo produto");
+			System.out.println("2 - Listar produtos");
+			System.out.println("3 - Localizar produto");
+			System.out.println("4 - Alterar produto");
+			System.out.println("5 - Deletar produto");
+			System.out.println("6 - Voltar ao menu anterior");
+			opcaoProduto = Validator.catchNumero("Digite a opção desejada: ", "Erro. Favor digitar um numero de 1 a 6");
+			if (opcaoProduto < 6) {
+				opcaoProduto(opcaoProduto);
+			}
+		} while (opcaoProduto != 6);
+	}
+
+	// Seleção de tratamento do menu e serviços dos produtos
+	public static void opcaoProduto(Integer x) {
+		switch (x) {
+		// Opção de cadastro de produtos
+		case 1: {
+			System.out.println(" ---------- Cadastro de produto ----------");
+			String nome = JOptionPane.showInputDialog("Digite o nome do produto: ");
+			Double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do produto: "));
+			int quantidade = Validator.catchNumero("Digite a quantidade em estoque: ", "Favor digitar um numero inteiro");
+			String marca = JOptionPane.showInputDialog("Digite a marca do produto: ");
+			if (Validator.nome(nome) && Validator.nome(marca) && quantidade > 0) {
+				if (produto.cadastrar(nome, valor, quantidade, marca)) {
+					System.out.println("Produto " + nome.toUpperCase() + " cadastrado com sucesso");
+				} else {
+					System.out.println("Erro ao cadastrar o produto");
+				}
+			} else {
+				System.out.println("Nome ou marca inválidos. Favor digitar um nome válido e de até 30 caracteres.");
+			}
+			break;
+		}
+		// Opção de listagem de todos os produtos
+		case 2: {
+			System.out.println(produto.listar());
+			break;
+		}
+		// Opção de pesquisa e listagem de produtos de acordo com o termo pesquisado
+		case 3: {
+			System.out.println("Localizar termo na lista de produtos");
+			String pesquisa = JOptionPane.showInputDialog("Digite o termo que deseja procurar: ");
+			System.out.println(produto.listar(pesquisa));
+			break;
+		}
+		// Atualização total de um produto
+		case 4: {
+			System.out.println("Atualizar produto");
+			System.out.println(produto.listar());
+			Integer codAtualizar = Integer
+					.parseInt(JOptionPane.showInputDialog("Digite o código do produto a ser atualizado: "));
+			System.out.println("Passe as novas informações do produto");
+			String nome = JOptionPane.showInputDialog("Digite o nome do produto: ");
+			Double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do produto: "));
+			Integer quantidade = Validator.catchNumero("Digite a quantidade em estoque: ", "Favor digitar um numero inteiro");
+			String marca = JOptionPane.showInputDialog("Digite a marca do produto: ");
+			if (quantidade > 0 && Validator.nome(nome) && Validator.nome(marca)) {
+				Produto novoProduto = new Produto(nome, valor, quantidade, marca);
+				if (produto.atualizar(codAtualizar, novoProduto)) {
+					System.out.println("Produto atualizado com sucesso");
+				} else {
+					System.out.println("Erro ao atualizar o produto");
+				}
+			}
+			break;
+		}
+
+		// Opção de exclusão de produto
+		case 5: {
+			System.out.println("Apagar produto do cadastro");
+			System.out.println(produto.listar());
+			Integer codExcluir = Validator.catchNumero("Qual código do produto que você deseja excluir?", "Favor digitar um numero inteiro");
+			if (codExcluir > 0 && codExcluir < Main.bancoProdutos.size()) {
+				if (produto.excluir(codExcluir)) {
+					System.out.println("Produto de código " + codExcluir + " excluído com sucesso");
+				} else {
+					System.out.println("Erro ao tentar excluir o produto");
+				}
+			}
+			break;
+		}
+		default:
+			break;
+		}
+	}
+
+}

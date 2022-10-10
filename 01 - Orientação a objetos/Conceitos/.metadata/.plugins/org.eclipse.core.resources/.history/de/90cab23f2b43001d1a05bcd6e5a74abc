@@ -1,0 +1,18 @@
+package exemplo5;
+
+import javax.swing.JOptionPane;
+
+public class Cargo {
+
+	// Atributos
+	private String cargo;
+	private double salario;
+	
+	// Método para obter o cargo e salário
+	private void obterDadosCargo() {
+		cargo = JOptionPane.showInputDialog("Informe o cargo: ");
+		salario = Integer.parseInt(JOptionPane.showInputDialog("Informe o salario: "));
+		
+	}
+	
+}

@@ -1,0 +1,37 @@
+package TrabalhoAvaliativo071022;
+
+public class AcoesMarca implements IservicosMarca {
+	
+	
+
+	@Override
+	public boolean cadastrar(String m) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean atualizar(String m, String n) {
+		
+		return false;
+	}
+
+	@Override
+	public String listar() {
+		
+		return null;
+	}
+
+	@Override
+	public String selecionar() {
+		
+		return null;
+	}
+
+	@Override
+	public boolean excluir() {
+		
+		return false;
+	}
+
+}

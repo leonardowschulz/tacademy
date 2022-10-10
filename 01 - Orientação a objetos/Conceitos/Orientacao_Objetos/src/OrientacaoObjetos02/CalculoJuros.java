@@ -1,0 +1,26 @@
+package OrientacaoObjetos02;
+
+public class CalculoJuros {
+	
+	private Double investimento;
+	private Integer meses;
+	private Double taxaJuros;
+	
+
+	public CalculoJuros(Double investimento, Integer meses, Double taxaJuros) {
+		this.investimento = investimento;
+		this.meses = meses;
+		this.taxaJuros = taxaJuros;
+	}
+	
+	public void Calculo() {
+		double jurosMensal = this.taxaJuros / this.meses;
+		double saldoConta = this.investimento;
+		System.out.println("   Mês            -         Valor ganho mês        -       Total da aplicação");
+		for (int i = 1; i <= this.meses; i++) {
+			System.out.println(i + " mes       " + String.format("%.2f",saldoConta * jurosMensal/100) + "         " + String.format("%.2f",(saldoConta + (saldoConta * jurosMensal/100))));
+			saldoConta += (saldoConta * jurosMensal/100);
+		}
+	}
+
+}

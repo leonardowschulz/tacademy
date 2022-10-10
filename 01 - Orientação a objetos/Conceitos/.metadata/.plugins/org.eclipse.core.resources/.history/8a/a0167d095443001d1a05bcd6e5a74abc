@@ -1,0 +1,15 @@
+package AtividadeLocalDateTime01;
+
+import java.time.LocalDate;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		LocalDate date = new LocalDate(0, 0, 0);
+
+		System.out.println(date);
+
+	}
+
+}

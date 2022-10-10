@@ -1,0 +1,9 @@
+package OrientacaoObjetos07;
+
+public class Tabuleiro {
+	
+	int tabuleiro[][] = new int[10][10];
+	
+	
+
+}

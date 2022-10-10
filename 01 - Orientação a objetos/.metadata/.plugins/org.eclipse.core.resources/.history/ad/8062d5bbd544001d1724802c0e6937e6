@@ -1,0 +1,54 @@
+package TrabalhoAvaliativo;
+
+import java.util.ArrayList;
+
+public class Cadastro {
+	
+	ArrayList<Marca> marcas = new ArrayList<>();
+	static Marca novaMarca = new Marca();
+	ArrayList<Produto> produtos = new ArrayList<>();
+	Produto novoProduto = new Produto();
+	
+	
+	public void cadastrarProduto(String nome, String descricao, double valor, int quantidade, Marca marca) {
+		novoProduto.setNome(nome);
+		novoProduto.setDescricao(descricao);
+		novoProduto.setValor(valor);
+		novoProduto.setQuantidade(quantidade);
+		novoProduto.setMarca(marca);
+		System.out.println("Produto " + nome + " cadastrado com sucesso.");
+	}
+	
+	public void cadastrarNovaMarca(String marca) {
+		if (!marcaExiste(marca)) {
+			novaMarca.setNomeMarca(marca);
+			marcas.add(novaMarca);
+			System.out.println("Marca cadastrada com sucesso");
+		} else {
+			System.out.println("Marca já existente");
+		}
+	}
+	
+	public boolean marcaExiste(String marca) {
+		Marca novaMarca = new Marca(marca.toUpperCase());
+		for (int i = 0; i < marcas.size(); i++) {
+			if (marcas.get(i).equals(novaMarca)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void listarMarcas() {
+		if (!marcas.isEmpty()) {
+			System.out.println(" ---- Lista de Marcas. Total de: " + marcas.size() + " ----");
+			for (int i = 0; i < marcas.size(); i++) {
+			System.out.println((i + 1) + " Nome: " + marcas.get(i));
+			}
+		} else {
+			System.out.println("Sem marcas cadastradas");
+		}
+	}
+	
+
+}

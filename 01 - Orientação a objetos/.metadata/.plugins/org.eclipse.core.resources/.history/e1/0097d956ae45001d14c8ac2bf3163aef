@@ -1,0 +1,14 @@
+package TrabalhoAvaliativo071022;
+
+public class Validator {
+
+	public static boolean nome(String nome) {
+		if (nome != "" && nome != null && nome.length() <= 20) {
+			return true;
+		} else {
+
+			return false;
+		}
+	}
+
+}

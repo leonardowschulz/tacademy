@@ -1,0 +1,23 @@
+package TrabalhoAvaliativo071022;
+
+import java.util.ArrayList;
+
+public class Main {
+
+	public static ArrayList<Marca> bancoMarcas = new ArrayList<>();
+	public static ArrayList<Produto> bancoProdutos = new ArrayList<>();
+	
+	public static void main(String[] args) {
+		
+		ServicosMarca novaMarca = new ServicosMarca();
+		
+		novaMarca.cadastrar("Samsung");
+		
+		novaMarca.listar();
+		
+
+		
+		
+	}
+
+}

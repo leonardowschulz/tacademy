@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="exemplo01.Pessoa"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="exemplo03.Acao"/>
+    <fullyQualifiedTypeName name="exemplo04.Calculos"/>
+    <fullyQualifiedTypeName name="exemplo06.Class1"/>
+    <fullyQualifiedTypeName name="exemplo06.Class2"/>
+    <fullyQualifiedTypeName name="exemplo09.CalculadoraAvancada"/>
+    <fullyQualifiedTypeName name="java.lang.Character"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.chrono.ChronoLocalDate"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+</qualifiedTypeNameHistroy>

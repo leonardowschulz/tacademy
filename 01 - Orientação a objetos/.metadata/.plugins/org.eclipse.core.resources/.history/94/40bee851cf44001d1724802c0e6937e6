@@ -1,0 +1,13 @@
+package TrabalhoAvaliativo;
+
+import java.util.ArrayList;
+
+public class Cadastro {
+	
+	ArrayList<Marca> marcas = new ArrayList<>();
+	ArrayList<Produto> produtos = new ArrayList<>();
+	
+	
+	
+
+}

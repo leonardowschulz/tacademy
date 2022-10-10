@@ -1,0 +1,137 @@
+package TrabalhoAvaliativo071022;
+
+import javax.swing.JOptionPane;
+
+public class Tela {
+	
+	
+	static ServicosMarca marca = new ServicosMarca();
+	static ServicosProduto produto = new ServicosProduto();
+	
+	public static void opcao(int opcao) {
+		switch (opcao) {
+		case 1: {
+			menuMarca();
+			break;
+		}
+		case 2: {
+			menuProduto();
+			break;
+		}
+		default:
+			break;
+		}
+	}
+	public static void menuMarca() {
+		Integer opcaoMarca = 0;
+		do {
+			System.out.println(" ------ Menu Marca ------");
+			System.out.println("1 - Cadastrar nova marca");
+			System.out.println("2 - Listar marcas");
+			System.out.println("3 - Alterar marca");
+			System.out.println("4 - Deletar marca");
+			System.out.println("5 - Voltar ao menu anterior");
+			opcaoMarca = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada:"));
+			if (opcaoMarca != 5) {
+				opcaoMarca(opcaoMarca);
+			}
+		} while (opcaoMarca != 5);
+
+	}
+
+	public static void opcaoMarca(Integer opcaoMarca) {
+
+		switch (opcaoMarca) {
+		case 1: {
+			System.out.println("Digite a marca a ser cadastrada");
+			String novaMarca = JOptionPane.showInputDialog("Digite a nova marca a ser cadastrada");
+			marca.cadastrar(novaMarca);
+			break;
+		}
+		case 2: {
+			marca.listar();
+			break;
+		}
+		case 3: {
+			System.out.println("Alteração de nome de marca");
+			String nomeMarca = JOptionPane.showInputDialog("Digite o nome da marca a ser alterada");
+			String novaMarca = JOptionPane.showInputDialog("Digite o nome da nova marca");
+			if (marca.atualizar(nomeMarca, novaMarca)) {
+				System.out.println("Marca atualizada com sucesso");
+			} else {
+				System.out.println("Marca não pode ser atualizada");
+			}
+			break;
+		}
+		case 4: {
+			String marcaExcluir = JOptionPane.showInputDialog("Digite o nome da marca a ser apagada: ");
+			if (marca.excluir(marcaExcluir)) {
+				System.out.println("Marca " + marcaExcluir.toUpperCase() + " excluída com sucesso");
+			} else {
+				System.out.println("Erro ao tentar excluir a marca");
+			}
+		}
+		default:
+			break;
+		}
+
+	}
+
+	public static void menuProduto() {
+		Integer opcaoProduto = 0;
+		do {
+		System.out.println(" ------ Menu Produto ------");
+		System.out.println("1 - Cadastrar novo produto");
+		System.out.println("2 - Listar produtos");
+		System.out.println("3 - Selecionar produto");
+		System.out.println("4 - Localizar produto");
+		System.out.println("5 - Alterar produto");
+		System.out.println("6 - Deletar produto");
+		System.out.println("7 - Voltar ao menu anterior");
+		opcaoProduto = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada: "));
+		if (opcaoProduto < 7) {
+			opcaoProduto(opcaoProduto);
+		}
+		} while (opcaoProduto != 7);
+	}
+	
+	public static void opcaoProduto(Integer x) {
+		switch (x) {
+		case 1: {
+			System.out.println(" ---------- Cadastro de produto ----------");
+			String nome = JOptionPane.showInputDialog("Digite o nome do produto: ");
+			Double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do produto: "));
+			Integer quantidade = Integer.parseInt("Digite a quantidade em estoque: ");
+			String marca = JOptionPane.showInputDialog("Digite a marca do produto: ");
+			if (produto.cadastrar(nome, valor, quantidade, marca)) {
+				System.out.println("Produto " + nome.toUpperCase() + " cadastrado com sucesso");
+			} else {
+				System.out.println("Erro ao cadastrar o produto");
+			}
+			break;
+		}
+		case 2: {
+			produto.listar();
+			break;
+		}
+		case 3: {
+			break;
+		}
+		case 4: {
+			System.out.println("Localizar termo na lista de produtos");
+			String pesquisa = JOptionPane.showInputDialog("Digite o termo que deseja procurar: ");
+			System.out.println(produto.listar(pesquisa));
+			break;
+		}
+		case 5: {
+			break;
+		}
+		case 6: {
+			break;
+		}
+		default:
+			break;
+		}
+	}
+
+}

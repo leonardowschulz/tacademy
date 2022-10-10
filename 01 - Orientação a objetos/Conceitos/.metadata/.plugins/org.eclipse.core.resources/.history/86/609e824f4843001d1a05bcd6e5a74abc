@@ -1,0 +1,15 @@
+package AtividadeString03;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		String palavra = JOptionPane.showInputDialog("Digite a palavra: ");
+		
+		 System.out.println(palavra.substring(palavra.length() -2, palavra.length() -1)));
+
+	}
+
+}

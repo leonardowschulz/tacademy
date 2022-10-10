@@ -1,0 +1,26 @@
+package AtividadeMath01;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		int x = 0;
+		do {
+			System.out.println(""
+					+ "Soma;\r\n"
+					+ "Subtração;\r\n"
+					+ "Multiplicação;\r\n"
+					+ "Divisão;\r\n"
+					+ "Seno;\r\n"
+					+ "Cosseno;\r\n"
+					+ "Tangente;\r\n"
+					+ "Log;\r\n"
+					+ "Raiz Quadrada;\r\n"
+					+ "Raiz Cúbica.\r\n"
+					+ "");
+		} while (x != 11);
+		
+
+	}
+
+}

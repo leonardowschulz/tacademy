@@ -1,0 +1,25 @@
+package OrientacaoObjetos05;
+
+import java.util.Vector;
+
+public class Palavras {
+	
+	protected Vector<String> palavras = new Vector<>();
+	protected String word;
+	
+	
+	public void cadastroPalavras(String palavra) {
+		this.palavras.add(palavra);
+		
+	}
+	
+	public void selectWord() {
+		int x = (int) (Math.random()*palavras.size());
+		x -= 1;
+		this.word = palavras.get(x);
+		System.out.println(word);
+	}
+	
+	
+
+}

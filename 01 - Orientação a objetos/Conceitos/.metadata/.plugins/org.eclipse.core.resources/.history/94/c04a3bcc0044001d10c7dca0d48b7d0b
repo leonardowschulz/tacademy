@@ -1,0 +1,28 @@
+package OrientacaoObjetos03;
+
+public class Data {
+
+	private String data;
+	private Integer day;
+	private Integer month;
+	private Integer year;
+	
+	public Data(String data) {
+		this.data = data;	
+	}
+	
+	public void divide() {
+		String[] partes = this.data.split("/");
+		this.day = Integer.parseInt(partes[0]);
+		this.month = Integer.parseInt(partes[1]);
+		this.year = Integer.parseInt(partes[2]);
+		System.out.println("Dia: " + this.day + " mes: " + this.month + " ano: " + this.year);
+	}
+	
+	public void diminuiDia() {
+		
+	}
+	
+	
+	
+}

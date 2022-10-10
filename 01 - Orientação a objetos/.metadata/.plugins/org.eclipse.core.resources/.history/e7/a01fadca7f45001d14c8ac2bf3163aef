@@ -1,0 +1,35 @@
+package TrabalhoAvaliativo071022;
+
+import java.util.ArrayList;
+
+public class Main {
+
+	public static ArrayList<Marca> bancoMarcas = new ArrayList<>();
+	public static ArrayList<Produto> bancoProdutos = new ArrayList<>();
+	
+	public static void main(String[] args) {
+		
+		ServicosMarca novaMarca = new ServicosMarca();
+		
+		novaMarca.cadastrar("Samsung");
+		novaMarca.cadastrar("Apple");
+		novaMarca.cadastrar("Motorola");
+		
+		novaMarca.listar();
+		
+		if (novaMarca.atualizar("Samsung", "Nokia")) {
+			System.out.println("Marca atualizada com sucesso");
+		} else {
+			System.out.println("Erro ao atualizar a marca");
+		}
+		
+		novaMarca.listar();
+		
+		novaMarca.excluir("noKia");
+		novaMarca.listar();
+
+		
+		
+	}
+
+}

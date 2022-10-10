@@ -1,0 +1,30 @@
+package TrabalhoAvaliativo;
+
+import java.util.ArrayList;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		ArrayList<Marca> marcas = new ArrayList<>();
+		
+		Marca nomeMarca = new Marca();
+		Produto novoProduto = new Produto();
+		
+		
+		
+		System.out.println(" -------- Opções da loja: --------");
+		System.out.println("1 - Marca (cadastrar/alterar/remover");
+		System.out.println("2 - Produto (cadastrar/alterar/remover");
+		
+		/*do {
+			
+			
+			
+			
+		} while ();
+		*/
+		
+	}
+
+}

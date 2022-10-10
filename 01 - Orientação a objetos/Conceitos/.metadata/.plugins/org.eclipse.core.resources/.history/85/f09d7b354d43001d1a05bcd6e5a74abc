@@ -1,0 +1,29 @@
+package AtividadeMath01;
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Integer x = 0;
+		do {
+			System.out.println(""
+					+ "Soma;\r\n"
+					+ "Subtração;\r\n"
+					+ "Multiplicação;\r\n"
+					+ "Divisão;\r\n"
+					+ "Seno;\r\n"
+					+ "Cosseno;\r\n"
+					+ "Tangente;\r\n"
+					+ "Log;\r\n"
+					+ "Raiz Quadrada;\r\n"
+					+ "Raiz Cúbica.\r\n"
+					+ "");
+			x = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da opção: "));
+		} while (x != 11);
+		
+
+	}
+
+}

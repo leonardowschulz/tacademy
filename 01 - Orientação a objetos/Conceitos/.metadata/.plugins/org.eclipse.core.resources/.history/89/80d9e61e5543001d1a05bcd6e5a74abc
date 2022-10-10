@@ -1,0 +1,16 @@
+package AtividadeLocalDateTime01;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		LocalDateTime date = LocalDateTime.now();
+		System.out.println(date.getYear());
+		System.out.println(date);
+
+	}
+
+}

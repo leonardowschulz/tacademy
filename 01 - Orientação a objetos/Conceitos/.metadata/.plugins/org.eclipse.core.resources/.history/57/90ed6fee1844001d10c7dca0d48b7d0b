@@ -1,0 +1,60 @@
+package OrientacaoObjetos05;
+
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.JOptionPane;
+
+public class Palavras {
+	
+	private Vector<String> palavras = new Vector<>();
+	private String word;
+	private char[] charword;
+	
+	public void cadastroPalavras(String palavra) {
+		this.palavras.add(palavra);
+		
+	}
+	
+	public void selectWord() {
+		int x = (int) (Math.random()*palavras.size());
+		this.word = palavras.get(x);
+		charword = word.toCharArray();
+	}
+	
+	
+	public void play() {
+		System.out.println("Iniciando o jogo. A palavra tem: " + word.length() + " letras");
+		boolean gameIsOn = true;
+		ArrayList<String> acertos = new ArrayList<>();
+		int jogadas = 0;
+		do {
+		char letra = JOptionPane.showInputDialog("Digite a letra: ").charAt(0);
+		jogadas += 1;
+		for (int i = 0; i < word.length(); i++) {
+			if (charword[i] == letra) {
+				if (acertos.isEmpty()) {
+					acertos.add(String.valueOf(letra));
+				}
+				for (int j = 0; j < acertos.size(); j++) {
+					if (acertos.get(j).equals(String.valueOf(letra))) {
+						acertos.add(String.valueOf(letra));		
+					}
+			}
+				System.out.println("Acertou uma");
+				
+			}
+			
+		}
+		if (jogadas > 7) {
+			gameIsOn = false;
+		}
+		System.out.println(acertos);
+		} while (gameIsOn);
+		
+	}
+	
+	
+	
+
+}
