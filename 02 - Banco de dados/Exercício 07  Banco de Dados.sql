@@ -205,3 +205,12 @@ INNER JOIN cursos
 ON alunos_cursos.codigo_curso = cursos.codigo_curso
 WHERE cursos.valor_curso >= (SELECT AVG(valor_curso) FROM cursos)
 GROUP BY cursos.nome_curso;
+
+SELECT * FROM alunos;
+
+DELETE FROM alunos WHERE TIMESTAMPDIFF(YEAR, alunos.nascimento_aluno, CURDATE()) >= 30;
+
+DROP TABLE alunos_cursos;
+DROP TABLE alunos;
+DROP TABLE cursos;
+DROP TABLE professores;
