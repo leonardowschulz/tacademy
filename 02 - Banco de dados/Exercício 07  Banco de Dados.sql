@@ -147,3 +147,61 @@ SELECT
 FROM alunos_cursos
 INNER JOIN alunos
 ON alunos_cursos.codigo_aluno = alunos.codigo_aluno
+WHERE TIMESTAMPDIFF(YEAR, alunos.nascimento_aluno, CURDATE()) < 18
+GROUP BY alunos.nome_aluno;
+
+SELECT
+	cursos.nome_curso,
+    cursos.valor_curso,
+    COUNT(alunos_cursos.codigo_curso)
+FROM alunos_cursos
+INNER JOIN cursos
+ON alunos_cursos.codigo_curso = cursos.codigo_curso
+WHERE cursos.valor_curso = (SELECT MAX(valor_curso) FROM cursos);
+
+SELECT
+	professores.nome_professor,
+    COUNT(alunos_cursos.codigo_curso)
+FROM alunos_cursos
+INNER JOIN cursos
+ON alunos_cursos.codigo_curso = cursos.codigo_curso
+INNER JOIN professores
+ON cursos.codigo_professor = professores.codigo_professor
+GROUP BY professores.nome_professor;
+
+SELECT
+	professores.nome_professor,
+    COUNT(alunos_cursos.codigo_aluno)
+FROM alunos_cursos
+INNER JOIN cursos
+ON alunos_cursos.codigo_curso = cursos.codigo_curso
+INNER JOIN professores
+ON cursos.codigo_professor = professores.codigo_professor
+GROUP BY professores.nome_professor;
+
+SELECT
+	alunos.nome_aluno,
+    cursos.nome_curso,
+    cursos.valor_curso,
+    professores.nome_professor
+FROM alunos_cursos
+LEFT JOIN alunos
+ON alunos_cursos.codigo_aluno = alunos.codigo_aluno
+INNER JOIN cursos
+ON alunos_cursos.codigo_curso = cursos.codigo_curso
+INNER JOIN professores
+ON cursos.codigo_professor = professores.codigo_professor;
+
+SELECT
+	AVG(cursos.valor_curso) AS "Média valores"
+FROM cursos;
+
+SELECT
+	cursos.nome_curso,
+    cursos.valor_curso,
+    COUNT(alunos_cursos.codigo_aluno)
+FROM alunos_cursos
+INNER JOIN cursos
+ON alunos_cursos.codigo_curso = cursos.codigo_curso
+WHERE cursos.valor_curso >= (SELECT AVG(valor_curso) FROM cursos)
+GROUP BY cursos.nome_curso;
