@@ -114,3 +114,173 @@ ON vendas.codigo_cliente = clientes.codigo_cliente
 INNER JOIN produtos
 ON vendas.codigo_produto = produtos.codigo_produto;
 
+CREATE VIEW selecionar_vendedores_vendas AS
+SELECT
+	vendas.codigo_venda,
+    vendedores.nome_vendedor
+FROM vendas
+INNER JOIN vendedores
+ON vendas.codigo_vendedor = vendedores.codigo_vendedor;
+
+SELECT * FROM selecionar_clientes_produtos;
+SELECT * FROM selecionar_vendedores_vendas;
+
+CREATE VIEW selecionar_codigo_venda_cliente_produto AS
+SELECT
+	vendas.codigo_venda,
+    clientes.nome_cliente,
+    produtos.nome_produto
+FROM vendas
+INNER JOIN clientes
+ON vendas.codigo_cliente = clientes.codigo_cliente
+INNER JOIN produtos
+ON vendas.codigo_produto = produtos.codigo_produto
+ORDER BY vendas.codigo_venda;
+
+CREATE VIEW selecionar_vendas_por_filial AS
+SELECT
+	filiais.nome_filial,
+    SUM(produtos.valor_produto)
+FROM vendas
+INNER JOIN filiais
+ON vendas.codigo_filial = filiais.codigo_filial
+INNER JOIN produtos
+ON vendas.codigo_produto = produtos.codigo_produto
+GROUP BY filiais.nome_filial;
+
+CREATE VIEW selecionar_vendas_por_vendedor AS
+SELECT
+	vendedores.nome_vendedor,
+    SUM(produtos.valor_produto)
+FROM vendas
+INNER JOIN vendedores
+ON vendas.codigo_vendedor = vendedores.codigo_vendedor
+INNER JOIN produtos
+ON vendas.codigo_produto = produtos.codigo_produto
+GROUP BY vendedores.nome_vendedor;
+
+SELECT * FROM selecionar_codigo_venda_cliente_produto;
+SELECT * FROM selecionar_vendas_por_filial;
+SELECT * FROM selecionar_vendas_por_vendedor;
+
+CREATE VIEW selecionar_dados_produto_vendido AS
+SELECT
+	vendas.codigo_venda,
+    clientes.nome_cliente,
+    produtos.nome_produto,
+    produtos.valor_produto,
+    categorias.nome_categoria,
+    marcas.nome_marca
+FROM vendas
+INNER JOIN clientes
+ON vendas.codigo_cliente = clientes.codigo_cliente
+INNER JOIN produtos
+ON vendas.codigo_produto = produtos.codigo_produto
+INNER JOIN categorias
+ON produtos.codigo_categoria = categorias.codigo_categoria
+INNER JOIN marcas
+ON produtos.codigo_marca = marcas.codigo_marca;
+
+CREATE VIEW selecionar_detalhes_vendas_filial AS
+SELECT
+	filiais.nome_filial,
+    categorias.nome_categoria,
+    marcas.nome_marca,
+    produtos.nome_produto,
+    produtos.valor_produto
+FROM vendas
+INNER JOIN filiais
+ON vendas.codigo_filial = filiais.codigo_filial
+INNER JOIN produtos
+ON vendas.codigo_produto = produtos.codigo_produto
+INNER JOIN categorias
+ON produtos.codigo_categoria = categorias.codigo_categoria
+INNER JOIN marcas
+ON produtos.codigo_marca = marcas.codigo_marca
+ORDER BY filiais.nome_filial;
+
+SELECT * FROM selecionar_dados_produto_vendido;
+SELECT * FROM selecionar_detalhes_vendas_filial;
+
+CREATE VIEW selecionar_dados_venda AS
+SELECT
+	vendas.codigo_venda,
+	filiais.nome_filial,
+    clientes.nome_cliente,
+    categorias.nome_categoria,
+    marcas.nome_marca,
+    produtos.nome_produto,
+    vendedores.nome_vendedor
+FROM vendas
+INNER JOIN filiais
+ON vendas.codigo_filial = filiais.codigo_filial
+INNER JOIN produtos
+ON vendas.codigo_produto = produtos.codigo_produto
+INNER JOIN categorias
+ON produtos.codigo_categoria = categorias.codigo_categoria
+INNER JOIN marcas
+ON produtos.codigo_marca = marcas.codigo_marca
+INNER JOIN clientes
+ON vendas.codigo_cliente = clientes.codigo_cliente
+INNER JOIN vendedores
+ON vendas.codigo_vendedor = vendedores.codigo_vendedor
+ORDER BY vendas.codigo_venda;
+
+CREATE VIEW selecionar_vendas_termo_matriz AS
+SELECT
+	vendas.codigo_venda,
+	filiais.nome_filial,
+    clientes.nome_cliente,
+    categorias.nome_categoria,
+    marcas.nome_marca,
+    produtos.nome_produto,
+    vendedores.nome_vendedor
+FROM vendas
+INNER JOIN filiais
+ON vendas.codigo_filial = filiais.codigo_filial
+INNER JOIN produtos
+ON vendas.codigo_produto = produtos.codigo_produto
+INNER JOIN categorias
+ON produtos.codigo_categoria = categorias.codigo_categoria
+INNER JOIN marcas
+ON produtos.codigo_marca = marcas.codigo_marca
+INNER JOIN clientes
+ON vendas.codigo_cliente = clientes.codigo_cliente
+INNER JOIN vendedores
+ON vendas.codigo_vendedor = vendedores.codigo_vendedor
+WHERE filiais.nome_filial LIKE "%Matriz%";
+
+CREATE VIEW selecionar_vendas_vendedor_leonardo AS
+SELECT
+	vendas.codigo_venda,
+	filiais.nome_filial,
+    clientes.nome_cliente,
+    categorias.nome_categoria,
+    marcas.nome_marca,
+    produtos.nome_produto,
+    vendedores.nome_vendedor
+FROM vendas
+INNER JOIN filiais
+ON vendas.codigo_filial = filiais.codigo_filial
+INNER JOIN produtos
+ON vendas.codigo_produto = produtos.codigo_produto
+INNER JOIN categorias
+ON produtos.codigo_categoria = categorias.codigo_categoria
+INNER JOIN marcas
+ON produtos.codigo_marca = marcas.codigo_marca
+INNER JOIN clientes
+ON vendas.codigo_cliente = clientes.codigo_cliente
+INNER JOIN vendedores
+ON vendas.codigo_vendedor = vendedores.codigo_vendedor
+WHERE vendedores.nome_vendedor LIKE "%Leonardo%";
+
+SELECT * FROM selecionar_vendas_termo_matriz;
+SELECT * FROM selecionar_vendas_vendedor_leonardo;
+
+DROP TABLE vendas;
+DROP TABLE produtos;
+DROP TABLE marcas;
+DROP TABLE categorias;
+DROP TABLE clientes;
+DROP TABLE vendedores;
+DROP TABLE filiais;
