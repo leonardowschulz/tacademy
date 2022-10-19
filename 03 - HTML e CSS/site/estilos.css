@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+.fundoNavBar{
+    background: linear-gradient(to bottom, #e6f0a3 0%,#d2e638 50%,#c3d825 51%,#dbf043 100%);
+}
+.nav-link,
+.nav-link:hover{
+    color: black;
+}
+
+.navbar-brand,
+.navbar-brand:hover{
+    color:white;
+}
+.titulo{
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Satisfy', cursive;
+}
+.destinos{
+    margin-top: 30px;
+}
+
+.destinos p{
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.destinos .card{
+    padding: 5px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.5s;
+}
+
+.destinos .card:hover{
+    box-shadow: 0px 0px 10px black;
+}
+
+footer{
+    text-align: center;
+    font-size: 12px;
+    background-color: black;
+}
+footer p{
+    color: white;
+    margin: 0px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.contato textarea{
+    height: 100px;
+}
