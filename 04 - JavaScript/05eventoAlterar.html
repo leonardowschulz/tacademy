@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento Alterar</title>
+
+    <script>
+        function acao(codigo) {
+            
+            // Escolha
+            switch(parseInt(codigo)) {
+                case 1:
+                    document.getElementById("texto").innerText = "O Java é uma lingagem mantida pela oracle";
+                break;
+                case 2:
+                    document.getElementById("texto").innerText = "O C# é uma linguagem da Microsoft";
+                break;
+                case 3:
+                    document.getElementById("texto").innerText = "O PHP é a linguagem mais utilizada";
+                break;
+                case 4:
+                    document.getElementById("texto").innerText = "O Pthon trabalha muito bem com Big Data";
+                break;
+                default:
+                    document.getElementById("texto").innerText = "";
+                break;
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <select onchange="acao(this.value)">
+        <option value="0">Selecione um curso</option>
+        <option value="1">Java</option>
+        <option value="2">C#</option>
+        <option value="3">PHP</option>
+        <option value="4">Python</option>
+    </select>
+
+    <p id="texto"></p>
+
+</body>
+</html>

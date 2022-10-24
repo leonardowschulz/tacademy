@@ -10,9 +10,10 @@
 .col{
     text-align: center;
 }
-body{
-    
-    
+
+h2{
+    background-color: lightblue;
+    padding: 10px;
 }
 #intro {
         background-image: url("Imagens/kisspng-astrological-sign-zodiac-horoscope-astrology-clip-zodiac-signs-5abdb2b734c8c8.1370013115223814952162.png");
@@ -46,26 +47,26 @@ body{
 
         <p><p>
         </p>
-            <input type="number" name="" id="" placeholder="Digite o valor">
+            <input type="number" name="" id="valorDigitado" placeholder="Digite o valor">
         </p>
         <fieldset>
             <form action="">
-                <input type="radio" name="opcao" id="dolarreal">
+                <input type="radio" name="opcao" id="dolarreal" onclick="calculo(1)">
                 <label for="dolarreal">Dólar para Real</label>
                 <p></p>
-                <input type="radio" name="opcao" id="realdolar">
+                <input type="radio" name="opcao" id="realdolar" onclick="calculo(2)">
                 <label for="realdolar">Real para Dólar</label>
                 <p></p>
-                <input type="radio" name="opcao" id="euroreal">
+                <input type="radio" name="opcao" id="euroreal" onclick="calculo(3)">
                 <label for="euroreal">Euro para Real</label>
                 <p></p>
-                <input type="radio" name="opcao" id="realeuro">
+                <input type="radio" name="opcao" id="realeuro" onclick="calculo(4)">
                 <label for="realeuro">Real para Euro</label>
                 <p></p>
-                <input type="radio" name="opcao" id="librareal">
+                <input type="radio" name="opcao" id="librareal" onclick="calculo(5)">
                 <label for="librareal">Libra para Real</label>
                 <p></p>
-                <input type="radio" name="opcao" id="reallibra">
+                <input type="radio" name="opcao" id="reallibra" onclick="calculo(6)">
                 <label for="reallibra">Real para Libra</label>
                 <p></p>
                 
@@ -73,6 +74,8 @@ body{
 
 
             </form>
+            <h2 id="retorno">O valor convertido fica em: </h2>
+            
 
 
 
@@ -86,5 +89,47 @@ body{
 
 
     </div>
+
+    <script>
+        function calculo(opcao){
+            
+            let valor = 0;
+
+            document.getElementById("retorno").innerText = "leo";
+
+            switch(parseInt(opcao)) {
+                case 1:
+                valor = document.getElementById("valorDigitado").value/5;
+                document.getElementById("retorno").innerText = "O valor convertido em Real fica em: R$ " + valor.toFixed(2);
+                    break;
+                case 2:
+                valor = document.getElementById("valorDigitado").value*5;
+                document.getElementById("retorno").innerText = "O valor convertido em Dólar fica em: $ " + valor.toFixed(2);
+                    break;
+                case 3:
+                valor = document.getElementById("valorDigitado").value/6;
+                document.getElementById("retorno").innerText = "O valor convertido em Real fica em: R$ " + valor.toFixed(2);
+                    break;
+                case 4:
+                valor = document.getElementById("valorDigitado").value*6;
+                document.getElementById("retorno").innerText = "O valor convertido em Euro fica em: € " + valor.toFixed(2);
+                    break;
+                case 5:
+                valor = document.getElementById("valorDigitado").value/7;
+                document.getElementById("retorno").innerText = "O valor convertido em Real fica em: R$ " + valor.toFixed(2);
+                    break;
+                case 6:
+                valor = document.getElementById("valorDigitado").value*7;
+                document.getElementById("retorno").innerText = "O valor convertido em Libra fica em: £ " + valor.toFixed(2);
+                    break;
+                default:
+                    document.getElementById("retorno").innerText = "O valor convertido fica em:";
+
+
+
+            }
+        }
+    </script>
+
 </body>
 </html>

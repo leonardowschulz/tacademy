@@ -16,6 +16,34 @@
         }
     </style>
 
+<script>
+
+
+
+    function calcular() {
+        // Obter o elemento input
+        let primeira = document.getElementById("nota01");
+        let segunda = document.getElementById("nota02");
+
+
+        // Condicional
+        if(primeira.value == "" || segunda.value == ""){
+            alert("Informe as duas notas");
+        
+        } else {
+            alert(primeira.value);
+            alert(segunda.value);
+            let media = (parseFloat(primeira.value) + parseFloat(segunda.value))/2;
+            alert("Média: " + media);
+        }
+        // Limpar o elemento input
+        // nota01.value = "";
+        // nota02.value = "";
+
+    }
+
+</script>
+
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
@@ -35,10 +63,14 @@
                       <p></p>
                       <p></p>
                       <br>
-                      <input type="number" name="numero01" id="" placeholder="Nota 01">
-                      <input type="number" name="numero01" id="" placeholder="Nota 02">
+                      <input type="number" name="numero01" id="nota01" placeholder="Nota 01">
+                      <input type="number" name="numero02" id="nota02" placeholder="Nota 02">
                       <p></p>
-                      <button class="btn btn-primary">Enviar</button>
+                      <button class="btn btn-primary" onclick="calcular()">Enviar</button>
+
+                      <p id="resultado">
+
+                      </p>
                   </div>
               </p>
           </div>

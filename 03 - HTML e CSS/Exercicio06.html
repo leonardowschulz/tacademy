@@ -41,9 +41,9 @@
             <div class="col">
                 <h1>Insira sua data de nascimento</h1>
                 <p></p>
-                <input type="date" name="" id="" class="form-control">
+                <input type="date" name="" id="dataDigitada" class="form-control">
                 <p></p>
-                <input type="button" value="Submit" class="btn btn-warning form-control">
+                <input type="button" value="Submit" class="btn btn-warning form-control" onclick="qualSigno()">
                 
             </div>
             <div class="col">
@@ -55,6 +55,17 @@
 
 
     </div>
+
+    <script>
+        function qualSigno(){
+            
+            let data = new Date(document.getElementById("dataDigitada").value);
+     
+            alert("Mês" + (data.getMonth()+1) + "Dia" + (data.getDate()+1));
+
+
+        }
+    </script>
 
 </body>
 </html>
