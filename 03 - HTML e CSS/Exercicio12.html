@@ -1,68 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercício 12</title>
     <style>
-        h1{
-            text-align: center;
-            background-color: blueviolet;
-        }
-
+      h1 {
+        text-align: center;
+        background-color: blueviolet;
+        padding: 10px;
+      }
+      h2 {
+        text-align: center;
+        background-color: blueviolet;
+        padding: 5px;
+      }
     </style>
 
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
     <h1>Cadastro de clientes</h1>
     <div class="row">
-        <div class="col"></div>
-        <div class="col">
-            <h2>Cadastrar</h2>
-            <p></p>
-            <input type="text" name="" id="" placeholder="Nome" class="form-control">
-            <p></p>
-            <input type="date" name="" id="" class="form-control">
-            <p></p>
-            <input type="email" name="" id="" required class="form-control" placeholder="E-mail">
-            <p></p>
-            <input type="text" name="" id="" class="form-control" placeholder="Telefone">
-            <p></p>
-            <button class="btn btn-info form-control">Cadastrar</button>
+      <div class="col"></div>
+      <div class="col">
+        <h2>Cadastrar</h2>
+        <p></p>
+        <input
+          type="text"
+          name=""
+          id="nomeCadastro"
+          placeholder="Nome"
+          class="form-control"
+        />
+        <p></p>
+        <input
+          type="date"
+          name=""
+          id="nascimentoCadastro"
+          class="form-control"
+        />
+        <p></p>
+        <input
+          type="email"
+          name=""
+          id="emailCadastro"
+          required
+          class="form-control"
+          placeholder="E-mail"
+        />
+        <p></p>
+        <input
+          type="text"
+          name=""
+          id="telefoneCadastro"
+          class="form-control"
+          placeholder="Telefone"
+        />
+        <p></p>
+        <button
+          class="btn btn-info form-control"
+          onclick="cadastrar(-1)"
+          id="botaoCadastrar"
+        >
+          Cadastrar
+        </button>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nome</th>
-                        <th>Nascimento</th>
-                        <th>E-mail</th>
-                        <th>Telefone</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-            
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Leonardo</td>
-                    <td>11/12/1984</td>
-                    <td>leonardo@</td>
-                    <td>47-99999-9999</td>
-                    <td><button class="form-control">Alterar</button>
-                    <p><button class="form-control">Excluir</button></p></td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-        <div class="col"></div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nome</th>
+              <th>Nascimento</th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
 
+          <tbody id="tabela"></tbody>
+        </table>
+        <h1 id="aniversariantesmes">Aniversariantes do mês</h1>
+        <h2 id="jafizeramaniversario">Já fizeram aniversário:</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Nascimento</th>
+            </tr>
+          </thead>
 
+          <tbody id="tabelajafizeram"></tbody>
+        </table>
+        <h2>Aniversariantes do dia:</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Nascimento</th>
+            </tr>
+          </thead>
 
+          <tbody id="tabelaaniversariantedodia"><tr></tr></tbody>
+        </table>
+        <h2 id="aindafaraaniversario">Fazerm até o final do mês:</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Nascimento</th>
+            </tr>
+          </thead>
+
+          <tbody id="tabelafarao"></tbody>
+        </table>
+      </div>
+      <div class="col"></div>
     </div>
-</body>
+
+    <script>
+      let dados = [];
+      let atualizacao = -1;
+
+      function cadastrar() {
+        let nomeCad = document.getElementById("nomeCadastro").value;
+        let nascimentoCad = document.getElementById("nascimentoCadastro").value;
+        let emailCad = document.getElementById("emailCadastro").value;
+        let telefoneCad = document.getElementById("telefoneCadastro").value;
+
+        if (atualizacao == -1) {
+          if (
+            nomeCad != "" &&
+            nascimentoCad != "" &&
+            emailCad != "" &&
+            telefoneCad != ""
+          ) {
+            let obj = {
+              nome: nomeCad,
+              nascimento: nascimentoCad,
+              email: emailCad,
+              telefone: telefoneCad,
+            };
+
+            dados.push(obj);
+            atualizar();
+          }
+        } else {
+          if (
+            nomeCad != "" &&
+            nascimentoCad != "" &&
+            emailCad != "" &&
+            telefoneCad != ""
+          ) {
+            let obj = {
+              nome: nomeCad,
+              nascimento: nascimentoCad,
+              email: emailCad,
+              telefone: telefoneCad,
+            };
+
+            dados[atualizacao] = obj;
+            document.getElementById("botaoCadastrar").innerHTML = "Cadastrar";
+            atualizacao = -1;
+            document
+              .getElementById("botaoCadastrar")
+              .classList.remove("btn-primary");
+            document.getElementById("botaoCadastrar").classList.add("btn-info");
+            atualizar();
+          }
+        }
+      }
+
+      function atualizar() {
+        let tabela = document.getElementById("tabela");
+        tabela.innerHTML = "";
+        let tabelajafizeram = document.getElementById("tabelajafizeram");
+        tabelajafizeram.innerHTML = "";
+        let tabelaaniversariante = document.getElementById("tabelaaniversariantedodia");
+        tabelaaniversariante = "";
+        let aindafaraaniversario = document.getElementById("tabelafarao");
+        aindafaraaniversario = "";
+
+        for (let i = 0; i < dados.length; i++) {
+          // Informações de todos os cadastros
+          let linha = tabela.insertRow(-1);
+          let col1 = linha.insertCell(0);
+          let col2 = linha.insertCell(1);
+          let col3 = linha.insertCell(2);
+          let col4 = linha.insertCell(3);
+          let col5 = linha.insertCell(4);
+          let col6 = linha.insertCell(5);
+
+          // Informações dos que já fizeram aniversário
+
+          let dataaniversario = new Date(dados[i].nascimento);
+          let mesaniversario = dataaniversario.getMonth() + 1;
+          let diaaniversario = dataaniversario.getDate() + 1;
+          let hoje = new Date();
+          if (mesaniversario == hoje.getMonth() + 1) {
+            if (diaaniversario < hoje.getDate()) {
+              let linhajafizeram = tabelajafizeram.insertRow(-1);
+              let col1jafizeram = linhajafizeram.insertCell(0);
+              let col2jafizeram = linhajafizeram.insertCell(1);
+              col1jafizeram.innerHTML = dados[i].nome;
+              col2jafizeram.innerHTML = dados[i].nascimento;
+            } else if (diaaniversario == hoje.getDate()) {
+              alert("aniversariante do dia ok");
+              let linhahoje = tabelaaniversariante.insertRow(0);
+
+              let col1dia = linhahoje.insertCell(0);
+              let col2dia = linhahoje.insertCell(1);
+              col1dia.innerHTML = dados[i].nome;
+              col2dia.innerHTML = dados[i].nascimento;
+            } else {
+              alert("aniversariantes futuros ok");
+              let linhafarao = aindafaraaniversario.insertRow(-1);
+              let col1farao = linhafarao.insertCell(0);
+              let col2farao = linhafarao.insertCell(1);
+              col1farao.innerHTML = dados[i].nome;
+              col2farao.innerHTML = dados[i].nascimento;
+            }
+          }
+          
+
+          col1.innerHTML = i + 1;
+          col2.innerHTML = dados[i].nome;
+          col3.innerHTML = dados[i].nascimento;
+          col4.innerHTML = dados[i].email;
+          col5.innerHTML = dados[i].telefone;
+          col6.innerHTML = `<button class="btn btn-primary" onclick="alterar(${i})">Alterar</button> <button class="btn btn-danger" onclick="excluir(${i})">Remover</button>`;
+        }
+      }
+
+      function alterar(codigo) {
+        document.getElementById("nomeCadastro").value = "";
+        document.getElementById("nascimentoCadastro").value = "";
+        document.getElementById("emailCadastro").value = "";
+        document.getElementById("telefoneCadastro").value = "";
+        atualizacao = codigo;
+        document.getElementById("botaoCadastrar").innerHTML =
+          "Atualizar código: " + (codigo + 1);
+        document.getElementById("botaoCadastrar").classList.remove("btn-info");
+        document.getElementById("botaoCadastrar").classList.add("btn-primary");
+        cadastrar();
+      }
+
+      function excluir(codigo) {
+        dados.splice(codigo, 1);
+        atualizar();
+      }
+    </script>
+  </body>
 </html>

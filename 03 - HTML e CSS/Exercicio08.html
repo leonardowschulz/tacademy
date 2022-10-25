@@ -20,6 +20,10 @@
             background-color: rgba(124, 124, 124, 0.61);
             padding: 20px;
         }
+        h2{
+            padding: 20px;
+            text-align: center;
+        }
     </style>
 
     <!-- CSS only -->
@@ -33,23 +37,26 @@
             <form action="">
                 <h1>Digite o horário atual</h1>
             <p></p>
-            <input type="time" datetime="hh:mm" name="" id="" class="form-control">
+            <input type="time" datetime="hh:mm" name="" id="horaatual" class="form-control">
             <p></p>
-            <input type="radio" name="" id="lisboa">
+            <input type="radio" name="date" id="lisboa" onclick="calcular(1)">
             <label for="lisboa">Lisboa</label>
             <p></p>
-            <input type="radio" name="" id="novaiorque">
+            <input type="radio" name="date" id="novaiorque" onclick="calcular(2)">
             <label for="novaiorque">Nova Iorque</label>
             <p></p>
-            <input type="radio" name="" id="cidadedomexico">
+            <input type="radio" name="date" id="cidadedomexico" onclick="calcular(3)">
             <label for="cidadedomexico">Cidade do México</label>
             <p></p>
-            <input type="radio" name="" id="toquio">
+            <input type="radio" name="date" id="toquio" onclick="calcular(4)">
             <label for="toquio">Tóquio</label>
             <p></p>
-            <input type="radio" name="" id="berlim">
-            <label for="berlom">Berlim</label>
+            <input type="radio" name="date" id="berlin" onclick="calcular(5)">
+            <label for="berlin">Berlin</label>
+            <p></p>
+            <h2 id="retorno"></h2>
             </form>
+
 
         </div>
         <div class="col"></div>
@@ -57,6 +64,60 @@
 
 
     </div>
+
+    <script>
+        function calcular(opcao){
+
+
+            let horario = horaatual.value;
+            let dividido = horario.split(":");
+            let hora = parseInt(dividido[0]);
+            let minuto = dividido[1];
+            
+            switch(opcao){
+                case 1:
+                hora += 4;
+                if(hora >= 24) {
+                    hora -= 24;
+                }
+                document.getElementById("retorno").innerHTML = "O horário em Lisboa é: " + hora + ":" + minuto;
+                break;
+                case 2:
+                hora -= 1;
+                if(hora < 0) {
+                    hora += 24;
+                }
+                document.getElementById("retorno").innerHTML = "O horário em Nova Iorque é: " + hora + ":" + minuto;
+                break;
+                case 3:
+                hora -= 2;
+                if(hora < 0) {
+                    hora += 24;
+                }
+                document.getElementById("retorno").innerHTML = "O horário em Cidade do México é: " + hora + ":" + minuto;
+                break;
+                case 4:
+                hora += 12;
+                if(hora >= 24) {
+                    hora -= 24;
+                }
+                document.getElementById("retorno").innerHTML = "O horário em Toquio é: " + hora + ":" + minuto;
+                break;
+                case 5:
+                hora += 5;
+                if(hora >= 24) {
+                    hora -= 24;
+                }
+                document.getElementById("retorno").innerHTML = "O horário em Berlin é: " + hora + ":" + minuto;
+                break;
+
+                default:
+                break;
+            }
+        }
+
+
+    </script>
 
 </body>
 </html>

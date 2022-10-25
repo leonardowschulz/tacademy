@@ -24,6 +24,12 @@
             background-color: rgba(255, 255, 255, 0.385);
             padding: 60px;
         }
+        #retorno{
+            background-color: rgba(255, 255, 255, 0.688);
+            padding: 30px;
+            text-align: center;
+            font-size: 20px;
+        }
 
     </style>
 
@@ -42,10 +48,12 @@
                 <p>
                 </p>
                 
-                <input type="number" name="" id="" class="form-control">
+                <input type="number" name="" id="number" class="form-control">
                 <p></p>
-                <button class="btn btn-warning form-control">Calcular tabuada</button>
+                <input type="button" class="btn btn-warning form-control" onclick="calcular()" value="Calcular tabuada">
             </form>
+            <p></p>
+            <p id="retorno"></p>
         </div>
         <div class="col">
 
@@ -53,6 +61,28 @@
 
 
     </div>
+
+    <script>
+        function calcular(){
+            let numero = parseInt(document.getElementById("number").value);
+            let linha = document.getElementById("retorno");
+            linha.innerHTML = "";
+            
+            
+            
+            for(let i = 1; i <= 10; i++) {
+                // let retorno = linha.insertRow;
+                // alert("tchayu");
+                // imprimir = retorno;
+                // imprimir.innerText = i + "X" + numero + " = " + numero * i;
+                // alert("oi");
+                linha.innerHTML += (i + "X" + numero + " = " + numero * i) + "<br>";   
+        
+            }
+            
+            
+        }
+    </script>
 
 </body>
 </html>
