@@ -1,54 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercício 13</title>
 
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-</head>
-<body>
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
     <div class="row">
-        <div class="col"></div>
-        <div class="col">
-            <h1>Cadastro</h1>
-            <P></P>
-            <input type="text" name="" id="" class="form-control" placeholder="Nome do aluno">
-            <p></p>
-            <input type="number" name="" id="" placeholder="Nota 1" class="form-control">
-            <p></p>
-            <input type="number" name="" id="" placeholder="Nota 2" class="form-control">
-            <p></p>
-            <input type="text" class="form-control" placeholder="Gênero">
-            <p></p>
-            <button class="btn btn-success form-control">Cadastrar</button>
+      <div class="col"></div>
+      <div class="col">
+        <h1>Cadastro</h1>
+        <p></p>
+        <input
+          type="text"
+          name=""
+          id="nome"
+          class="form-control"
+          placeholder="Nome do aluno"
+        />
+        <p></p>
+        <input
+          type="number"
+          name=""
+          id="nota1"
+          placeholder="Nota 1"
+          class="form-control"
+        />
+        <p></p>
+        <input
+          type="number"
+          name=""
+          id="nota2"
+          placeholder="Nota 2"
+          class="form-control"
+        />
+        <p></p>
+        <input
+          type="text"
+          class="form-control"
+          id="genero"
+          placeholder="Gênero (H/M)"
+        />
+        <p></p>
+        <button class="btn btn-success form-control" onclick="cadastrar()">
+          Cadastrar
+        </button>
 
-            <br>
+        <br />
 
-            <p></p>
-            
-        </div>
-        <div class="col"></div>
+        <p></p>
+      </div>
+      <div class="col"></div>
     </div>
     <table class="table">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Nome</th>
-                <th>Primeira nota</th>
-                <th>Segunda nota</th>
-                <th>Média</th>
-                <th>Situação</th>
-                <th>Gênero</th>
-            </tr>
-        </thead>
-        <tbody id="tabela"> </tbody>
-
-
-
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Primeira nota</th>
+          <th>Segunda nota</th>
+          <th>Média</th>
+          <th>Situação</th>
+          <th>Gênero</th>
+        </tr>
+      </thead>
+      <tbody id="tabela"><tr></tr></tbody>
     </table>
 
     <p>Porcentual de homens:</p>
@@ -58,5 +83,77 @@
     <p>Porcentual de alunos em exame:</p>
     <p>Aluno com maior média:</p>
 
-</body>
+    <script>
+      let dados = [];
+      let media = 0;
+      let situacao;
+
+      function cadastrar() {
+        let nome = document.getElementById("nome").value;
+        let nota1 = document.getElementById("nota1").value;
+        let nota2 = document.getElementById("nota2").value;
+        let genero = document.getElementById("genero").value;
+
+        calculoMedia(nota1, nota2);
+
+        if (nome != "" && nota1 != "" && nota2 != "" && genero != "") {
+          let obj = {
+            nome: nome,
+            nota1: nota1,
+            nota2: nota2,
+            media: media,
+            situacao: situacao,
+            genero: genero,
+          };
+          dados.push(obj);
+          atualizar();
+          
+        } else {
+          alert("Favor completar todos os dados");
+        }
+      }
+      function atualizar() {
+        let tabela = document.getElementById("tabela");
+        tabela.innerHTML = "";
+
+        for (let i = 0; i < dados.length; i++) {
+          let linhaCad = tabela.insertRow(-1);
+          let col1Cad = linhaCad.insertCell(0);
+          let col2Cad = linhaCad.insertCell(1);
+          let col3Cad = linhaCad.insertCell(2);
+          let col4Cad = linhaCad.insertCell(3);
+          let col5Cad = linhaCad.insertCell(4);
+          let col6Cad = linhaCad.insertCell(5);
+          let col7Cad = linhaCad.insertCell(6);
+
+          col1Cad.innerHTML = i + 1;
+          col2Cad.innerHTML = dados[i].nome;
+          col3Cad.innerHTML = dados[i].nota1;
+          col4Cad.innerHTML = dados[i].nota2;
+          col5Cad.innerHTML = dados[i].media;
+          col6Cad.innerHTML = dados[i].situacao;
+          col7Cad.innerHTML = dados[i].genero;
+
+          // Estatísticas:
+
+        }
+      }
+      function calculoMedia(nota1, nota2) {
+        media = (parseFloat(nota1) + parseFloat(nota2)) / 2;
+        if(media >= 7) {
+            situacao = "Aprovado";
+        } else if(media > 5 && media < 7) {
+            situacao = "Em exame";
+        } else {
+            situacao = "Reprovado";
+        }
+        
+      }
+      function porcentagem(){
+        for(let i = 0;i < dados.length;i++){
+            
+        }
+      }
+    </script>
+  </body>
 </html>

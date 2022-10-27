@@ -184,9 +184,9 @@
         let tabelajafizeram = document.getElementById("tabelajafizeram");
         tabelajafizeram.innerHTML = "";
         let tabelaaniversariante = document.getElementById("tabelaaniversariantedodia");
-        tabelaaniversariante = "";
+        tabelaaniversariante.innerHTML = "";
         let aindafaraaniversario = document.getElementById("tabelafarao");
-        aindafaraaniversario = "";
+        aindafaraaniversario.innerHTML = "";
 
         for (let i = 0; i < dados.length; i++) {
           // Informações de todos os cadastros
@@ -198,6 +198,13 @@
           let col5 = linha.insertCell(4);
           let col6 = linha.insertCell(5);
 
+          col1.innerHTML = i + 1;
+          col2.innerHTML = dados[i].nome;
+          col3.innerHTML = dados[i].nascimento;
+          col4.innerHTML = dados[i].email;
+          col5.innerHTML = dados[i].telefone;
+          col6.innerHTML = `<button class="btn btn-primary" onclick="alterar(${i})">Alterar</button> <button class="btn btn-danger" onclick="excluir(${i})">Remover</button>`;
+          
           // Informações dos que já fizeram aniversário
 
           let dataaniversario = new Date(dados[i].nascimento);
@@ -230,12 +237,6 @@
           }
           
 
-          col1.innerHTML = i + 1;
-          col2.innerHTML = dados[i].nome;
-          col3.innerHTML = dados[i].nascimento;
-          col4.innerHTML = dados[i].email;
-          col5.innerHTML = dados[i].telefone;
-          col6.innerHTML = `<button class="btn btn-primary" onclick="alterar(${i})">Alterar</button> <button class="btn btn-danger" onclick="excluir(${i})">Remover</button>`;
         }
       }
 
