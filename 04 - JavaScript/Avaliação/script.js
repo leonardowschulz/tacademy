@@ -533,6 +533,7 @@ function addCarrinho(codigo) {
   if (existe == 0) {
     carrinho.push(objCarrinho);
   }
+  valorCompra()
   updateCart();
 }
 
@@ -581,7 +582,7 @@ function listarCarrinho() {
     // Botão
     let botao = document.createElement("button");
     botao.classList.add("btn", "btn-danger");
-    botao.innerHTML = "Adicionar";
+    botao.innerHTML = "Retirar 1";
     botao.value = i;
     botao.onclick = function acao() {
       remCarrinho(this.value);
