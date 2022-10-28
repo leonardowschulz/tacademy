@@ -3,8 +3,6 @@ CREATE TABLE marcas(
     nome_marca VARCHAR(20)
 );
 
-
-
 CREATE TABLE produtos(
 	codigo_produto INT PRIMARY KEY AUTO_INCREMENT,
     nome_produto VARCHAR(50),
@@ -13,7 +11,6 @@ CREATE TABLE produtos(
     codigo_marca INT,
     FOREIGN KEY(codigo_marca) REFERENCES marcas(codigo_marca)
 );
-
 
 INSERT INTO marcas VALUES
 (1, "Nike"),
