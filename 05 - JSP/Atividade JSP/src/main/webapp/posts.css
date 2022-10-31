@@ -1,0 +1,56 @@
+.corpo {
+	text-align: center;
+	padding-left: 150px;
+	padding-right: 150px;
+	padding-top: 50px;
+	
+}
+
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+a:hover {
+	color: green;	
+}
+#postagem {
+	text-align: center;
+	padding-top: 180 px;
+	padding-left: 250px;
+	padding-right: 250px;
+}
+
+#cadastroPost {
+	padding-bottom: 100px;
+}
+#novoPost {
+	padding: 20px;
+	padding-top: -100px;
+}
+.edicaoPostagem {
+	padding:150px;
+}
+body {
+	background-color: #ffd558;
+}
+#h1edicao{
+	text-align: center;
+	padding: 30px;
+}
+#editTitulo, #editTexto, #editAutor, #cadastroComentario {
+	background-color: rgba(255, 255, 255, 0.452);
+	
+}
+#comentarios {
+	color: blue;
+	text-align: left;
+}
+#h2comentarios{
+	padding-top: 30px;
+	text-align: center;
+}
+#h2addComentario {
+	padding: 30px;
+}

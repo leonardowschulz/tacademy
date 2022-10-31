@@ -1,3 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="pacote.Conexao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -40,12 +43,36 @@
 		</thead>
 		
 		<tbody>
+			
+			<%
+				// Conexão com o banco mySQL
+				Conexao c = new Conexao();
+				
+				// SQL
+				String sql = "SELECT * FROM pessoas";
+			
+				// Statement
+				Statement stmt = c.efetuarConexao().createStatement();
+				
+				// Obter dados da tabela pessoas
+				ResultSet rs = stmt.executeQuery(sql);
+				
+				// Laço de repetição
+				while(rs.next()) {
+					
+				
+			
+			%>
+		
 			<tr>
-				<td>1</td>
-				<td>Alice</td>
-				<td>27</td>
-				<td><a href="removerPessoa.jsp" class="btn btn-danger">Remover</a></td>
+				<td><% out.print(rs.getInt(1)); %></td>
+				<td><% out.print(rs.getString(2)); %></td>
+				<td><% out.print(rs.getInt(3)); %></td>
+				<td><a href="removerPessoa.jsp?codigo=<% out.print(rs.getInt(1)); %>" class="btn btn-danger">Remover</a></td>
 			</tr>
+			
+			<% } %>
+			
 		</tbody>
 	</table>
 
