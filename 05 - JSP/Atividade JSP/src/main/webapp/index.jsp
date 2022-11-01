@@ -34,7 +34,9 @@
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
-			  
+			  <li class="nav-item">
+				<a class="nav-link active" href="login.jsp">Login</a>
+			  </li>
 			</ul>
 			<form class="d-flex" role="search" action="pesquisa.jsp" method="post">
 			  <input class="form-control me-2" type="search" placeholder="Busca..." aria-label="Search" id="busca" name="busca">
@@ -73,7 +75,7 @@
 			%>
 			
 				<h2> <a href="postagem.jsp?codigo=<% out.print(rs.getInt(1)); %>"> <% out.print(rs.getString(3)); %></a></h2>
-				<p><% out.print(rs.getString(4)); %> ...</p>
+				<p><% out.print(rs.getString(4).substring(0,180)); %>...</p>
 				<p>Autor: <% out.print(rs.getString(2)); %></p>
 				<br>
 				

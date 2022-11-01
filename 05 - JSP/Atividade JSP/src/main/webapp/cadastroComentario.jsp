@@ -11,30 +11,30 @@
 <body>
 <%
 		// Obter o nome, título e post
-		String nome = request.getParameter("nome");
-		String texto = request.getParameter("texto");
-		
+		String nome = request.getParameter("nomeComentario");
+		String texto = request.getParameter("textoComentario");
+		int codigoC = Integer.parseInt(request.getParameter("codigoC"));
 		
 		
 		// Efetuar a conexão
-		Conexao c = new Conexao();
+		Conexao cComentario = new Conexao();
 		
 		// SQL
-		String sql = "INSERT INTO comentario (nome, comentario, codigo_post) VALUES (?, ? , ?)";
+		String sqlComentario = "INSERT INTO comentario (nome, comentario, codigo_post) VALUES (?, ? , ?)";
 		
 		// PreparedStatement
-		PreparedStatement pstmt = c.efetuarConexao().prepareStatement(sql);
+		PreparedStatement pstmtComentario = cComentario.efetuarConexao().prepareStatement(sqlComentario);
 		
 		// Passar os parâmetros do SQL
-		pstmt.setString(1, nome);
-		pstmt.setString(2, texto);
-		pstmt.setString(3, post);
+		pstmtComentario.setString(1, nome);
+		pstmtComentario.setString(2, texto);
+		pstmtComentario.setInt(3, codigoC);
 		
 		// Executar o comando SQL
-		pstmt.execute();
+		pstmtComentario.execute();
 		
 		// Redirecionamento
-		response.sendRedirect("posts.jsp");
+		response.sendRedirect("postagem.jsp?codigo=" + codigoC);
 		
 	%>
 </body>

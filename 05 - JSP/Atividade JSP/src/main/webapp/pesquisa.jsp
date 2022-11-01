@@ -67,7 +67,7 @@
 %>
 
 	<h2> <a href="postagem.jsp?codigo=<% out.print(rs.getInt(1)); %>"> <% out.print(rs.getString(3)); %></a></h2>
-	<p><% out.print(rs.getString(4)); %> ...</p>
+	<p><% out.print(rs.getString(4)); %></p>
 	<p>Autor: <% out.print(rs.getString(2)); %></p>
 	<br>
 
