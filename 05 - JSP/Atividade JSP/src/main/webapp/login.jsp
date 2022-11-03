@@ -16,6 +16,10 @@
 	
 </head>
 <body>
+<%
+String name=(String)session.getAttribute("admin");
+String nameUser=(String)session.getAttribute("user");
+%>
 
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
@@ -28,10 +32,32 @@
 			  <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="index.jsp">Blog</a>
 			  </li>
+			  
+			  <% if(name != null) {	%>
+			  
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
-			  
+			  <li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Admin logado: <% out.print(name); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
+			  <% if(nameUser != null) { %>
+			  	
+			  	<li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Usuário logado: <% out.print(nameUser); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
 			</ul>
 			<form class="d-flex" role="search" action="pesquisa.jsp" method="post">
 			  <input class="form-control me-2" type="search" placeholder="Busca..." aria-label="Search" id="busca" name="busca">
@@ -84,7 +110,7 @@
 <div class="split right">
   <div class="centered">
   
-<form action="loginusuario.jsp" style="border:3px solid #ccc">
+<form action="checkuser.jsp" style="border:3px solid #ccc">
   <div class="container">
     <h1>Login usuário</h1>
     <p>Preencha os dados abaixo:</p>
@@ -98,38 +124,22 @@
 
     <hr>
 
+	<%
+	String retorno = request.getParameter("retorno");
+	if(retorno != null) {%>
+    <p><% out.print(retorno); %></p>
+    <% } %>
 
     <div class="clearfix">
-      <button type="button" class="btn btn-success">Login</button>
+      <button type="submit" class="btn btn-success">Login</button>
       
     </div>
   </div>
 </form>
 
-<hr>
 
-<form action="loginusuario.jsp" style="border:3px solid #ccc">
-  <div class="container">
-    <h1>Login admin</h1>
-    <p>Preencha os dados abaixo:</p>
-    <hr>
 
-    
-    <input type="text" placeholder="Digite o usuário" name="usuarioadmin" id="usuarioadmin" required class="form-control">
-	
-    
-    <input type="password" placeholder="Digite a senha" name="senhaadmin" id="senhaadmin" required class="form-control">
 
-    <hr>
-
-    
-
-    <div class="clearfix">
-      <button type="button" class="btn btn-success">Login</button>
-      
-    </div>
-  </div>
-</form>
   
   </div>
 </div>

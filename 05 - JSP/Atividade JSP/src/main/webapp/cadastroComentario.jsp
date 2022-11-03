@@ -10,6 +10,13 @@
 </head>
 <body>
 <%
+	 String name=(String)session.getAttribute("admin");
+	 String nameUser=(String)session.getAttribute("user");
+	 if(name == null && nameUser == null) {
+		 response.sendRedirect("login.jsp");
+	 }
+		 %>
+<%
 		// Obter o nome, título e post
 		String nome = request.getParameter("nomeComentario");
 		String texto = request.getParameter("textoComentario");

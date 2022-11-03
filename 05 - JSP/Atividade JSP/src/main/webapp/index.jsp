@@ -19,6 +19,13 @@
 	
 </head>
 <body>
+	 <%
+	 String name=(String)session.getAttribute("admin");
+	 String nameUser=(String)session.getAttribute("user");
+	 if(name == null && nameUser == null) {
+		 response.sendRedirect("login.jsp");
+	 }
+		 %>
 
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
@@ -31,12 +38,32 @@
 			  <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="index.jsp">Blog</a>
 			  </li>
+			  
+			  <% if(name != null) {	%>
+			  
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link active" href="login.jsp">Login</a>
-			  </li>
+					<a class="nav-link active" href="user.jsp">Admin logado: <% out.print(name); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
+			  <% if(nameUser != null) { %>
+			  	
+			  	<li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Usuário logado: <% out.print(nameUser); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
 			</ul>
 			<form class="d-flex" role="search" action="pesquisa.jsp" method="post">
 			  <input class="form-control me-2" type="search" placeholder="Busca..." aria-label="Search" id="busca" name="busca">
@@ -45,10 +72,14 @@
 		  </div>
 		</div>
 	  </nav>
+
 	<div class="corpo">
 	
 
-	
+			<h1><% name=(String)session.getAttribute("mainuser");  
+			out.print("Hello "+name);   %></h1>
+			
+			
 	
 	
 			
@@ -75,7 +106,13 @@
 			%>
 			
 				<h2> <a href="postagem.jsp?codigo=<% out.print(rs.getInt(1)); %>"> <% out.print(rs.getString(3)); %></a></h2>
-				<p><% out.print(rs.getString(4).substring(0,180)); %>...</p>
+				<%
+				String texto = rs.getString(4);
+				if (texto.length() > 100) {
+					texto = texto.substring(0, 100) + "...";
+				}
+				%>
+				<p><% out.print(texto); %></p>
 				<p>Autor: <% out.print(rs.getString(2)); %></p>
 				<br>
 				

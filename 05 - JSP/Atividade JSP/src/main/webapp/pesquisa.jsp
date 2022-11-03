@@ -19,6 +19,13 @@
 
 </head>
 <body>
+<%
+	 String name=(String)session.getAttribute("admin");
+	 String nameUser=(String)session.getAttribute("user");
+	 if(name == null && nameUser == null) {
+		 response.sendRedirect("login.jsp");
+	 }
+		 %>
 <nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
 		  

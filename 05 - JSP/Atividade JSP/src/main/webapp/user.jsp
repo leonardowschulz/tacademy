@@ -19,6 +19,13 @@
 	<script src="posts.js"></script>
 </head>
 <body id="editBody">
+<%
+	 String name=(String)session.getAttribute("admin");
+	 String nameUser=(String)session.getAttribute("user");
+	 if(name == null && nameUser == null) {
+		 response.sendRedirect("login.jsp");
+	 }
+		 %>
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
 		  
@@ -30,10 +37,32 @@
 			  <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="index.jsp">Blog</a>
 			  </li>
+			  
+			  <% if(name != null) {	%>
+			  
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
-			  
+			  <li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Admin logado: <% out.print(name); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
+			  <% if(nameUser != null) { %>
+			  	
+			  	<li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Usuário logado: <% out.print(nameUser); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
 			</ul>
 			<form class="d-flex" role="search" action="pesquisa.jsp" method="post">
 			  <input class="form-control me-2" type="search" placeholder="Busca..." aria-label="Search" id="busca" name="busca">
@@ -46,8 +75,7 @@
 	<div class="edicaoPostagem">
 	<%
 	
-				// int codigo = Integer.parseInt(request.getParameter("codigo"));
-				String usuario = "Leonardo";
+				String usuario=(String)session.getAttribute("mainuser");
 				// Conexão com o banco mySQL
 				Conexao c = new Conexao();
 				

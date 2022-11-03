@@ -18,6 +18,13 @@
 	<script src="posts.js"></script>
 </head>
 <body>
+<%
+	 String name=(String)session.getAttribute("admin");
+	 String nameUser=(String)session.getAttribute("user");
+	 if(name == null && nameUser == null) {
+		 response.sendRedirect("login.jsp");
+	 }
+		 %>
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
 		  
@@ -29,10 +36,32 @@
 			  <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="index.jsp">Blog</a>
 			  </li>
+			  
+			  <% if(name != null) {	%>
+			  
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
-			  
+			  <li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Admin logado: <% out.print(name); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
+			  <% if(nameUser != null) { %>
+			  	
+			  	<li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Usuário logado: <% out.print(nameUser); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
 			</ul>
 			<form class="d-flex" role="search" action="pesquisa.jsp" method="post">
 			  <input class="form-control me-2" type="search" placeholder="Busca..." aria-label="Search" id="busca" name="busca">
@@ -112,9 +141,9 @@
 	<H2 id="h2addComentario">Adicionar um novo comentário: </H2>	
 
 	<form action="cadastroComentario.jsp" method="post" onsubmit="return valida()" id="cadastroComentario">
-		<input type="text" placeholder="Nome" name="nomeComentario" id="nomeComentario" class="form-control">
+		<input type="text" value="<% out.print((String)session.getAttribute("mainuser")); %>" name="nomeComentario1" id="nomeComentario1" class="form-control" disabled>
 		<input type="text" placeholder="Texto" name="textoComentario" id="textoComentario" class="form-control">
-		
+		<input type="hidden" name="nomeComentario" id="nomeComentario" value="<% out.print((String)session.getAttribute("mainuser")); %>">
 		<input type="hidden" id="codigoC" name="codigoC" value="<% out.print(request.getParameter("codigo"));%>">
 		<input type="submit" value="Comentar" class="btn btn-primary form-control">	
 	</form>

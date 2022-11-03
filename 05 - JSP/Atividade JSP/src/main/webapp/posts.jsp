@@ -19,6 +19,13 @@
 	
 </head>
 <body>
+<%
+	 String name=(String)session.getAttribute("admin");
+
+	 if(name == null) {
+		 response.sendRedirect("login.jsp");
+	 }
+		 %>
 
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
@@ -31,13 +38,26 @@
 			  <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="index.jsp">Blog</a>
 			  </li>
+			  
+			  <% if(name != null) {	%>
+			  
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
+			  <li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Admin logado: <% out.print(name); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
 			  
+
 			</ul>
-			<form class="d-flex" role="search">
-			  <input class="form-control me-2" type="search" placeholder="Busca..." aria-label="Search">
+			<form class="d-flex" role="search" action="pesquisa.jsp" method="post">
+			  <input class="form-control me-2" type="search" placeholder="Busca..." aria-label="Search" id="busca" name="busca">
 			  <button class="btn btn-outline-success" type="submit">Busca</button>
 			</form>
 		  </div>

@@ -48,7 +48,7 @@
 			Conexao caduser = new Conexao();
 		
 			// SQL
-			String sqlcaduser = "INSERT INTO usuarios (usuario, senha, nome, acessoadm) VALUES (?, ? , ?, ?)";
+			String sqlcaduser = "INSERT INTO usuarios (usuario, senha, nome, acessoadm, banido) VALUES (?, ? , ?, ?, ?)";
 		
 			// PreparedStatement
 			PreparedStatement pstmtcaduser = caduser.efetuarConexao().prepareStatement(sqlcaduser);
@@ -58,10 +58,12 @@
 			pstmtcaduser.setString(2, senha);
 			pstmtcaduser.setString(3, nome);
 			pstmtcaduser.setInt(4, 0);
+			pstmtcaduser.setInt(5, 0);
 		
 			// Executar o comando SQL
 			pstmtcaduser.execute();
 			mensagem = "Usuário " + usuario + " cadastrado com sucesso";
+			
 			}
 		}
 		// Redirecionamento
