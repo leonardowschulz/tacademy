@@ -20,7 +20,8 @@ CREATE TABLE usuarios(
     usuario VARCHAR(30),
     senha VARCHAR(30),
     nome VARCHAR(30),
-    acessoadm BOOL    
+    acessoadm BOOL,
+    banido BOOL
 );
 
 INSERT INTO posts VALUES
@@ -35,3 +36,12 @@ INSERT INTO posts VALUES
 (null, "Leonardo", "$550 PlayStation VR2 launches on Feb. 22, 2023", "The new headset uses inside-out tracking and doesn't require an external camera."),
 (null, "Leonardo", "Hackers roubam 130 repositórios da Dropbox no GitHub", "Foram obtidas chaves de API, emails de funcionários, clientes e fornecedores. Credenciais de clientes e código dos principais aplicativos e infraestrutura da empresa não foram afetados. As informações são do site Bleeping Computer."),
 (null, "Leonardo", "Cientistas da Arábia Saudita desenvolvem vidro inteligente", "O sistema – que pode substituir o WiFi durante a dia – consome apenas 1 watt (até 95% menos do que um roteador tradicional), mas atinge uma velocidade de apenas 16 Kbps no momento. Apesar de alterar a polaridade da luz solar rapidamente, a frequência não é perceptível ao olho humano. As informações são do site New Atlas.");
+
+
+SELECT * FROM posts;
+
+INSERT INTO usuarios VALUES
+(1, "Leonardo", "123", "Leo", 1, 0),
+(2, "Tester", "123", "Testerrrr", 0, 0),
+(3, "Banned", "123", "Bloquedo", 0, 1),
+(4, "Caroline", "123", "Caroline23", 0, 0);
