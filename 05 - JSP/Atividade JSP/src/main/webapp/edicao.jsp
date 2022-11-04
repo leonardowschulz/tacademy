@@ -158,7 +158,7 @@
 					<% } else { %>
 					<a href="desabilitarcomentario.jsp?codigo=<% out.print(rsComentario.getInt(1)); %>&postagem=<%out.print(rsComentario.getInt(4)); %>" class="btn btn-danger">Desabilitar</a>
 					<% } %>
-					<a href="edicao.jsp?codigo=<% out.print(rsComentario.getInt(1)); %>" class="btn btn-warning">Editar/Apagar</a>
+					<a href="removeComentario.jsp?codigo=<% out.print(rsComentario.getInt(1)); %>&postagem=<%out.print(rsComentario.getInt(4)); %>" class="btn btn-warning">Apagar</a>
 					</p>
 					<br>
 					
