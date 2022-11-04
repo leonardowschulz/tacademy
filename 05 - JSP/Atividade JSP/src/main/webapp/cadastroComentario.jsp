@@ -27,7 +27,7 @@
 		Conexao cComentario = new Conexao();
 		
 		// SQL
-		String sqlComentario = "INSERT INTO comentario (nome, comentario, codigo_post) VALUES (?, ? , ?)";
+		String sqlComentario = "INSERT INTO comentario (nome, comentario, codigo_post, abilitado) VALUES (?, ? , ?, ?)";
 		
 		// PreparedStatement
 		PreparedStatement pstmtComentario = cComentario.efetuarConexao().prepareStatement(sqlComentario);
@@ -36,6 +36,7 @@
 		pstmtComentario.setString(1, nome);
 		pstmtComentario.setString(2, texto);
 		pstmtComentario.setInt(3, codigoC);
+		pstmtComentario.setInt(4, 0);
 		
 		// Executar o comando SQL
 		pstmtComentario.execute();

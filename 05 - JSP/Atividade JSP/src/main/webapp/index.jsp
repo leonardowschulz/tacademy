@@ -44,6 +44,9 @@
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
+			   <li class="nav-item">
+				<a class="nav-link active" href="listausuarios.jsp">Lista de Usuarios</a>
+			  </li>
 			  <li class="nav-item">
 					<a class="nav-link active" href="user.jsp">Admin logado: <% out.print(name); %></a>
 				  </li>
@@ -76,8 +79,7 @@
 	<div class="corpo">
 	
 
-			<h1><% name=(String)session.getAttribute("mainuser");  
-			out.print("Hello "+name);   %></h1>
+			
 			
 			
 	

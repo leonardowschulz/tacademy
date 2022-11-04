@@ -31,7 +31,7 @@
 		Conexao c = new Conexao();
 		
 		// SQL
-		String sql = "UPDATE usuarios SET senha = ?,  nome = ?,  WHERE codigo = ?";
+		String sql = "UPDATE usuarios SET senha = ?,  nome = ?  WHERE codigo = ?";
 		
 		// PreparedStatement
 		PreparedStatement pstmt = c.efetuarConexao().prepareStatement(sql);

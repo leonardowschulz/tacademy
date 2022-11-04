@@ -12,14 +12,17 @@
 
 
 <%
-	// Obter o código do post
+	// Obter o código da pessoa
 	int codigo = Integer.parseInt(request.getParameter("codigo"));
+	int postagem = Integer.parseInt(request.getParameter("postagem"));
 
+
+	
 	// Efetuar conexão
 	Conexao c = new Conexao();
 	
 	// SQL
-	String sql = "DELETE FROM posts WHERE codigo = ?";
+	String sql = "UPDATE comentario SET abilitado = 1 WHERE codigo = ?";
 	
 	// PreparedStatement
 	PreparedStatement pstm = c.efetuarConexao().prepareStatement(sql);
@@ -28,22 +31,8 @@
 	// Executar a remoção
 	pstm.execute();
 	
-	
-	
-
-	
-	// SQL
-	String sqlComentario = "DELETE FROM comentario WHERE codigo_post = ?";
-	
-	// PreparedStatement
-	PreparedStatement pstmComentario = c.efetuarConexao().prepareStatement(sqlComentario);
-	pstmComentario.setInt(1, codigo);
-	
-	// Executar a remoção
-	pstmComentario.execute();
-	
 	// Redirecionamento
-	response.sendRedirect("posts.jsp");
+	response.sendRedirect("edicao.jsp?codigo=" + postagem);
 	
 %>
 

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pesquisa</title>
+<title>Index - Blog - Avaliação</title>
 
 <!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -16,16 +16,18 @@
 	
 	<!--  JS -->
 	<script src="posts.js"></script>
-
+	
 </head>
 <body>
+
 <%
 	 String name=(String)session.getAttribute("admin");
-	 String nameUser=(String)session.getAttribute("user");
-	 if(name == null && nameUser == null) {
+
+	 if(name == null) {
 		 response.sendRedirect("login.jsp");
 	 }
 		 %>
+
 
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
@@ -56,16 +58,7 @@
 				  </li>
 			  <% }	  %>
 
-			  <% if(nameUser != null) { %>
-			  	
-			  	<li class="nav-item">
-					<a class="nav-link active" href="user.jsp">Usuário logado: <% out.print(nameUser); %></a>
-				  </li>
-			  				  	
-				  <li class="nav-item">
-					<a class="nav-link active" href="logout.jsp">Logout</a>
-				  </li>
-			  <% }	  %>
+			  
 
 			</ul>
 			<form class="d-flex" role="search" action="pesquisa.jsp" method="post">
@@ -75,39 +68,65 @@
 		  </div>
 		</div>
 	  </nav>
-<div class="corpo">
 
-	<%
-	String busca = request.getParameter("busca");
-	
-	// Conexão com o banco mySQL
-	Conexao c = new Conexao();
-	
-	// SQL
-	String sql = "SELECT * FROM posts WHERE titulo LIKE '%" + busca + "%' OR post LIKE '%" + busca + "%' OR nome LIKE '%" + busca + "%' ORDER BY codigo DESC";
-	
-	// Statement
-	Statement stmt = c.efetuarConexao().createStatement();
-	
-	// Obter dados da tabela pessoas
-	ResultSet rs = stmt.executeQuery(sql);
-	
-	// Laço de repetição
-	while(rs.next()) {
-	
-	
+	<div class="corpo">
 
-%>
+	<h1>Lista de usuários registrados:</h1>
+	<br/>
 
-	<h2> <a href="postagem.jsp?codigo=<% out.print(rs.getInt(1)); %>"> <% out.print(rs.getString(3)); %></a></h2>
-	<p><% out.print(rs.getString(4)); %></p>
-	<p>Autor: <% out.print(rs.getString(2)); %></p>
-	<br>
-
-<% } %>
-	
+	<table class="table">
+		<thead>
+		<tr>
+			<th>#</th>
+			<th>Usuário</th>
+			<th>Nick-name</th>
+			<th>Bloqueado?</th>		
+		</tr>
+		</thead>
+		
+		<tbody>
+			
+			<%
+				// Conexão com o banco mySQL
+				Conexao c = new Conexao();
+				
+				// SQL
+				String sql = "SELECT * FROM usuarios";
+			
+				// Statement
+				Statement stmt = c.efetuarConexao().createStatement();
+				
+				// Obter dados da tabela pessoas
+				ResultSet rs = stmt.executeQuery(sql);
+				
+				// Laço de repetição
+				while(rs.next()) {
+					
+				
+			
+			%>
+		
+			<tr>
+				<td><% out.print(rs.getInt(1)); %></td>
+				<td><% out.print(rs.getString(2)); %></td>
+				<td><% out.print(rs.getString(4)); %></td>
+				<td>
+			<% if(rs.getInt(6) == 0) { %>
+					<a href="bloquearusuario.jsp?codigo=<% out.print(rs.getInt(1)); %>" class="btn btn-danger">Bloquear</a>
+					<% } else { %>
+					<a href="desbloquearusuario.jsp?codigo=<% out.print(rs.getInt(1)); %>" class="btn btn-success">Desbloquear</a>
+					<% } %>
+				</td>
+			</tr>
+			
+					
+			
+			
+			<% } %>
+			
+		</tbody>
+	</table>
 	</div>
-
 
 </body>
 </html>

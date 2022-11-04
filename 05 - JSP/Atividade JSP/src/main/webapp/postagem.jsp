@@ -42,6 +42,9 @@
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
+			   <li class="nav-item">
+				<a class="nav-link active" href="listausuarios.jsp">Lista de Usuarios</a>
+			  </li>
 			  <li class="nav-item">
 					<a class="nav-link active" href="user.jsp">Admin logado: <% out.print(name); %></a>
 				  </li>
@@ -109,7 +112,7 @@
 			<%
 			
 			// String sql comentários
-			String sqlComentario = "SELECT * FROM comentario WHERE codigo_post =" + codigo;
+			String sqlComentario = "SELECT * FROM comentario WHERE codigo_post =" + codigo + " AND abilitado = 1";
 			
 			// Statement
 			Statement stmtComentario = c.efetuarConexao().createStatement();

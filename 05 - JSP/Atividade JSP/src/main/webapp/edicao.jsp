@@ -21,7 +21,7 @@
 <%
 	 String name=(String)session.getAttribute("admin");
 	 String nameUser=(String)session.getAttribute("user");
-	 if(name == null && nameUser == null) {
+	 if(name == null) {
 		 response.sendRedirect("login.jsp");
 	 }
 		 %>
@@ -36,10 +36,35 @@
 			  <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="index.jsp">Blog</a>
 			  </li>
+			  
+			  <% if(name != null) {	%>
+			  
 			  <li class="nav-item">
 				<a class="nav-link active" href="posts.jsp">Manutenção</a>
 			  </li>
-			  
+			   <li class="nav-item">
+				<a class="nav-link active" href="listausuarios.jsp">Lista de Usuarios</a>
+			  </li>
+			  <li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Admin logado: <% out.print(name); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
+			  <% if(nameUser != null) { %>
+			  	
+			  	<li class="nav-item">
+					<a class="nav-link active" href="user.jsp">Usuário logado: <% out.print(nameUser); %></a>
+				  </li>
+			  				  	
+				  <li class="nav-item">
+					<a class="nav-link active" href="logout.jsp">Logout</a>
+				  </li>
+			  <% }	  %>
+
 			</ul>
 			<form class="d-flex" role="search" action="pesquisa.jsp" method="post">
 			  <input class="form-control me-2" type="search" placeholder="Busca..." aria-label="Search" id="busca" name="busca">
@@ -94,13 +119,51 @@
 				<input type="hidden" name="codigo" value="<% out.print(rs.getInt(1)); %>">
 				<input type="submit" value="Salvar" class="btn btn-success">
 				</form>
-
-			
 				
 				
 				<a href="removePost.jsp?codigo=<% out.print(rs.getInt(1)); %>" class="btn btn-danger">Apagar</a>
 			
 			<%	} %>
+			
+			<h2 id="h2comentarios">Comentários:</h2>
+			
+			<%
+			
+			// String sql comentários
+			String sqlComentario = "SELECT * FROM comentario WHERE codigo_post =" + codigo;
+			
+			// Statement
+			Statement stmtComentario = c.efetuarConexao().createStatement();
+			
+			// Obter dados da tabela pessoas
+			ResultSet rsComentario = stmtComentario.executeQuery(sqlComentario);
+			
+			
+			while(rsComentario.next()) {
+				
+				
+				
+				
+				%>
+
+	<div id="comentarios">
+
+
+				
+					<h3>Nome: <% out.print(rsComentario.getString(2)); %></h3>
+					<p>Comentário: <% out.print(rsComentario.getString(3)); %>
+					
+					<% if(rsComentario.getInt(5) == 0) { %>
+					<a href="abilitarcomentario.jsp?codigo=<% out.print(rsComentario.getInt(1)); %>&postagem=<%out.print(rsComentario.getInt(4)); %>" class="btn btn-success">Abilitar</a>
+					<% } else { %>
+					<a href="desabilitarcomentario.jsp?codigo=<% out.print(rsComentario.getInt(1)); %>&postagem=<%out.print(rsComentario.getInt(4)); %>" class="btn btn-danger">Desabilitar</a>
+					<% } %>
+					<a href="edicao.jsp?codigo=<% out.print(rsComentario.getInt(1)); %>" class="btn btn-warning">Editar/Apagar</a>
+					</p>
+					<br>
+					
+	</div>				
+				<%	} %>
 	
 	</div>
 </body>
