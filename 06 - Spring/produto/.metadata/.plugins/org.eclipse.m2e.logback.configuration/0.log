@@ -1,0 +1,6 @@
+2022-11-07 08:34:34,428 [Worker-7: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is not available. Remote download required.
+2022-11-07 08:36:28,024 [main] INFO  org.eclipse.jetty.server.Server - jetty-10.0.11; built: 2022-06-21T21:12:44.640Z; git: d988aa016e0bb2de6fba84c1659049c72eae3e32; jvm 18+36-2087
+2022-11-07 08:36:28,044 [main] INFO  o.e.j.s.s.DefaultSessionIdManager - Session workerName=node0
+2022-11-07 08:36:28,062 [main] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@68eb7c52{/wse,null,AVAILABLE}
+2022-11-07 08:36:28,076 [main] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@5101d04c{HTTP/1.1, (http/1.1)}{0.0.0.0:52712}
+2022-11-07 08:36:28,079 [main] INFO  org.eclipse.jetty.server.Server - Started Server@363801b5{STARTING}[10.0.11,sto=0] @142469ms
